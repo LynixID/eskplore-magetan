@@ -41,12 +41,12 @@
     {{-- navbar start --}}
     <section id="navbar">
         <div class="logo">
-            <a href="{{ url('/home') }}">
+            <a href="{{ url('/') }}">
                 <img src="asset/img.hero/Logo.png" alt="Magetan" width="100px" /></a>
         </div>
         <div class="menu w-auto">
             <ul>
-                <li><a href="{{ url('/home') }}" id="satu" class="satu">Beranda</a></li>
+                <li><a href="{{ url('/') }}" id="satu" class="satu">Beranda</a></li>
 
             </ul>
         </div>
