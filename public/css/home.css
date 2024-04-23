@@ -1,0 +1,214 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    backdrop-filter: blur(2px);
+    background-color: #f6fffc;
+    position: relative;
+}
+
+/* ==================navbar start====================== */
+#navbar {
+    width: 100%;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    background: #013220;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 70px;
+}
+
+.logo {
+    height: 100%;
+    padding-top: 10px;
+}
+
+.menu {
+    width: 40%;
+}
+
+.menu ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    font-weight: 300;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.menu ul li a:hover {
+    color: aqua;
+}
+
+/* ======================navbar end========================= */
+
+#beranda {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url("../asset/img.hero/landscape-lake-surrounded-by-hills-covered-greenery-blue-sky-daytime.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.gradasi {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.3),
+        rgba(0, 0, 0, 0)
+    );
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.kolom-slogan {
+    width: 40%;
+    height: 500px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.kolom-foto {
+    width: 45%;
+    height: 500px;
+    z-index: 1;
+    position: relative;
+}
+
+.kolom-slogan h2 {
+    font-family: "Poppins", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: white;
+}
+.kolom-slogan h1 {
+    font-family: "Righteous", sans-serif;
+    font-size: 5.7rem;
+    letter-spacing: 5px;
+    color: white;
+}
+
+.slideshow1 {
+    width: 200px;
+    height: 320px;
+    background-image: url("../asset/img.hero/airterjun.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 50px;
+}
+.slideshow2 {
+    width: 300px;
+    height: 150px;
+    background-image: url("../asset/img.hero/tugusarangan.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 100px;
+    left: 265px;
+}
+.slideshow3 {
+    width: 150px;
+    height: 220px;
+    background-image: url("../asset/img.hero/Sejarah-Telaga-sarangan-dan-kuliner-khasnya.jpg.jpeg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 265px;
+    left: 265px;
+}
+.slideshow4 {
+    width: 250px;
+    height: 120px;
+    background-image: url("../asset/img.hero/tealgawahyu.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 335px;
+}
+.slideshow5 {
+    width: 280px;
+    height: 140px;
+    background-image: url("../asset/img.hero/genilagit.jpg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 265px;
+    left: 430px;
+}
+
+/* menu masuk ke maps start */
+.petapreview {
+    box-shadow: 0 0 17px white;
+    transition: 0.3s ease-in-out;
+}
+.bg1,
+.bg2 {
+    display: block;
+    width: 90%;
+    height: 94%;
+    position: absolute;
+    background-image: url("../asset/petapreview.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50px;
+    box-shadow: 0 0 10px white;
+}
+
+.bg1 {
+    transform: rotate(7deg);
+    z-index: -1;
+    right: 130px;
+    bottom: 50px;
+    filter: brightness(0.45);
+    transition: 0.3s ease-in-out;
+}
+.bg2 {
+    transform: rotate(-6deg);
+    z-index: -2;
+    filter: grayscale(0.8);
+    right: -23px;
+    bottom: -30px;
+    transition: 0.3s ease-in-out;
+}
+
+.petapreview:hover > .bg1,
+.petapreview:hover > .bg2 {
+    transform-origin: top left;
+    transform: rotate(0deg);
+}
+
+/* menu masuk ke maps ends */
