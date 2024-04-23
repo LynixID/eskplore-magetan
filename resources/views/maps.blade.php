@@ -55,12 +55,6 @@
     <div id="map"></div>
 </body>
 
-<script>
-    var map = L.map('map').setView([-7.662209, 111.354129], 12);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(map);
-</script>
+<script src="js/maps.js"></script>
 
 </html>

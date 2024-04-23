@@ -107,7 +107,47 @@
         </div>
     </section>
     <!-- peta preview ends -->
-    <div class=""></div>
+
+    <!-- feedback Form start -->
+    <section class="w-full py-32 flex justify-center ">
+        <div
+            class="w-9/12 h-[600px] bg-gradient-to-tr from-[#E5FFDC] to-[#B7F9A0] relative overflow-hidden rounded-3xl flex justify-around items-center">
+            @include('componen.bgsvg')
+            <div class="w-5/12 h-3/4 relative flex flex-col items-end font-normal py-5">
+                <h1 class="text-7xl">Feedback</h1>
+                <h1 class="text-7xl">Form</h1>
+                <p class="w-[250px] text-right text-xl pt-5">Silahkan isi, masukan anda akan sangat membantu kami dalam
+                    menyempurnakan project
+                    kami..</p>
+            </div>
+            <div class="w-5/12 h-3/4 bg-white relative rounded-2xl p-5">
+                <div class="mb-5">
+                    <label for="name" class="text-2xl">Nama Anda :</label>
+                    <br>
+                    <span class="flex justify-between">
+                        <input type="text" class="border border-slate-800 rounded-md py-1 px-3" id="name"
+                            placeholder="nama depan">
+                        <input type="text" class="border border-slate-800 rounded-md py-1 px-3"
+                            placeholder="nama belakang">
+                    </span>
+                </div>
+                <div class="mb-5">
+                    <label for="email" class="text-2xl">Email Anda :</label>
+                    <br>
+                    <input type="email" class="border border-slate-800 rounded-md py-1 px-3 w-full" id="email">
+                </div>
+                <div class="mb-5">
+                    <label for="komen" class="text-2xl">Masukan :</label>
+                    <br>
+                    <input type="text" class="border border-slate-800 rounded-md py-1 px-3 w-full h-[200px]"
+                        id="komen">
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- feedback form end -->
 
 
     {{-- Script Start --}}

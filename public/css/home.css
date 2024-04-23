@@ -212,3 +212,27 @@ body {
 }
 
 /* menu masuk ke maps ends */
+
+/* Feedback form start */
+.bgsvg1 {
+    position: absolute;
+    bottom: -20px;
+    transform: rotate(8deg);
+    left: -200px;
+}
+
+.bgsvg2 {
+    position: absolute;
+    scale: 0.8;
+    bottom: -130px;
+    transform: rotate(6deg);
+    left: -300px;
+}
+.bgsvg3 {
+    position: absolute;
+    scale: 0.8;
+    bottom: -170px;
+    transform: rotate(2deg);
+    left: -600px;
+}
+/* Feedback form ends */
