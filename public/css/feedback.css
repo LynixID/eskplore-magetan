@@ -1,0 +1,98 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #013220;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+    color: white;
+}
+
+header nav {
+    display: flex;
+    gap: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    padding: 20px;
+}
+
+main h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.feedback {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.keterangan-feedback {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.keterangan-feedback p {
+    font-weight: bold;
+}
+
+.info-feedback {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feedback thead{
+    background-color: #4F966B;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    text-align: left;
+}
+
+.pin, .delete {
+    padding: 5px 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pin { 
+    background-color: lightgreen;
+}
+
+.delete {
+    background-color: lightcoral;
+}
+
+.back{
+    background-color: #013220;
+    color: white;
+    padding: 20px;
+}

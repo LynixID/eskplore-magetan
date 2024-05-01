@@ -1,5 +1,6 @@
-<section class="w-full h-[450px] flex justify-center items-center">
-    <div class="w-[90%] h-[83%] flex gap-24 overflow-auto border-l-2 border-r-2 border-[#013220]" id="kotak-berita">
+<section class="w-full h-[450px] flex justify-center items-center mb-[130px] mt-[130px]">
+    <div class="w-[90%] h-[83%] flex gap-24
+    overflow-auto border-l-2 border-r-2 border-[#013220]" id="kotak-berita">
         <div
             class="min-w-[240px] h-[320px] bg-slate-500 rounded-tr-[50px] rounded-bl-[50px] relative shadow-lg border border-black shadow-slate-300 bg-cover bg-[url('asset/img.berita/genilangit.jpg')]">
             <div

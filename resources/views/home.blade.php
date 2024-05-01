@@ -134,21 +134,34 @@
                 <div class="mb-5">
                     <label for="email" class="text-2xl">Email Anda :</label>
                     <br>
-                    <input type="email" class="border border-slate-800 rounded-md py-1 px-3 w-full" id="email">
+                    <input type="email" placeholder="example@gmail.com"
+                        class="border border-slate-800 rounded-md py-1 px-3 w-full" id="email">
                 </div>
                 <div class="mb-5">
                     <label for="komen" class="text-2xl">Masukan :</label>
                     <br>
-                    <input type="text" class="border border-slate-800 rounded-md py-1 px-3 w-full h-[200px]"
-                        id="komen">
+                    <input type="text" placeholder="kirim pesan pada kami"
+                        class="border border-slate-800 rounded-md py-1 px-3 w-full h-[140px]" id="komen">
+                </div>
+                <div class="w-full flex justify-between">
+                    <button class="w-[35%] h-[40px] rounded-2xl text-white bg-red-500 hover:bg-red-700"
+                        type="reset">Reset</button>
+                    <button class="w-[62%] h-[40px] rounded-2xl text-white  bg-green-700 hover:bg-green-900"
+                        type="submit">Submit</button>
                 </div>
             </div>
 
 
         </div>
-    </section>
-    <!-- feedback form end -->
 
+    </section>
+    {{-- <div class="w-full h-72  bg-slate-600 text-white text-6xl">
+        @foreach ($titiklokasis as $titiklokasi)
+            <h1>{{ $titiklokasi->koordinat }}</h1>
+            <h1>{{ $titiklokasi->nm - wisata }}</h1>
+        @endforeach
+    </div> --}}
+    <!-- feedback form end -->
 
     {{-- Script Start --}}
     <script src="js/script.js"></script>
