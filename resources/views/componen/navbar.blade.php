@@ -5,7 +5,7 @@
     </div>
     <div class="menu">
         <ul>
-            <li><a href="#beranda" id="satu" class="satu">Beranda</a></li>
+            <li><a href="#beranda" id="satu" class="satu">Gading</a></li>
             <li><a href="">Galeri</a></li>
             <li><a href="#peta">Peta</a></li>
             <li><a href="{{ url('/feedback') }}">Feedback</a></li>

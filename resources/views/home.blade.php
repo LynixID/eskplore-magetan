@@ -111,7 +111,7 @@
     <!-- feedback Form start -->
     <section class="w-full py-32 flex justify-center ">
         <div
-            class="w-9/12 h-[600px] bg-gradient-to-tr from-[#E5FFDC] to-[#B7F9A0] relative overflow-hidden rounded-3xl flex justify-around items-center">
+            class="w-9/12 h-[600px] bg-gradient-to-tr from-[#E5FFDC] to-[#a9d699] relative overflow-hidden rounded-3xl flex justify-around items-center">
             @include('componen.bgsvg')
             <div class="w-5/12 h-3/4 relative flex flex-col items-end font-normal py-5">
                 <h1 class="text-7xl">Feedback</h1>
@@ -162,6 +162,7 @@
         @endforeach
     </div> --}}
     <!-- feedback form end -->
+
 
     {{-- Script Start --}}
     <script src="js/script.js"></script>

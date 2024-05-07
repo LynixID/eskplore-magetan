@@ -9,4 +9,9 @@ class Titiklokasi extends Model
 {
     use HasFactory;
     protected $table = 'titiklokasis';
+    protected $fillable = [
+        'nama',
+        'koordinat',
+        'penjelasan'
+    ];
 }

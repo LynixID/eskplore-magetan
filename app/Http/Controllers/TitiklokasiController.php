@@ -13,4 +13,26 @@ class TitiklokasiController extends Controller
         $titiklokasis = Titiklokasi::all();
         return view('maps', compact(['titiklokasis']));
     }
+
+    public function read()
+    {
+        $titiklokasis = Titiklokasi::all();
+        return view('tambahlokasi', compact(['titiklokasis']));
+    }
+
+    public function create(Request $request)
+    {
+        Titiklokasi::create($request->except('_token', 'submit'));
+
+        $titiklokasis = Titiklokasi::all();
+        return view('tambahlokasi', compact(['titiklokasis']));
+    }
+
+    public function destroy($id)
+    {
+
+        $lokasiDelete = Titiklokasi::find($id);
+        $lokasiDelete->delete();
+        return redirect('/tambahlokasi');
+    }
 }

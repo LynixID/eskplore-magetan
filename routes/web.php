@@ -11,8 +11,13 @@ Route::get('/feedback', function () {
     return view('feedback');
 });
 
-Route::get('/tambahlokasi', function () {
-    return view('tambahlokasi');
-});
 
 Route::get('/maps', [TitiklokasiController::class, 'index']);
+Route::get('/tambahlokasi', [TitiklokasiController::class, 'read']);
+Route::post('/tambahlokasi', [TitiklokasiController::class, 'create']);
+Route::delete('/tambahlokasi/{id}', [TitiklokasiController::class, 'destroy']);
+
+
+Route::get('/rektempat', function () {
+    return view('rektempat');
+});
