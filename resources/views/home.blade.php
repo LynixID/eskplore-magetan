@@ -120,27 +120,28 @@
                     menyempurnakan project
                     kami..</p>
             </div>
-            <div class="w-5/12 h-3/4 bg-white relative rounded-2xl p-5">
+            <form class="w-5/12 h-3/4 bg-white relative rounded-2xl p-5" action="{{ route('tambah.feedback') }}" method="POST">
+                @csrf
                 <div class="mb-5">
                     <label for="name" class="text-2xl">Nama Anda :</label>
                     <br>
                     <span class="flex justify-between">
                         <input type="text" class="border border-slate-800 rounded-md py-1 px-3" id="name"
-                            placeholder="nama depan">
+                            placeholder="nama depan" name="nama_depan">
                         <input type="text" class="border border-slate-800 rounded-md py-1 px-3"
-                            placeholder="nama belakang">
+                            placeholder="nama belakang" name="nama_belakang">
                     </span>
                 </div>
                 <div class="mb-5">
                     <label for="email" class="text-2xl">Email Anda :</label>
                     <br>
-                    <input type="email" placeholder="example@gmail.com"
+                    <input type="email" placeholder="example@gmail.com" name="email"
                         class="border border-slate-800 rounded-md py-1 px-3 w-full" id="email">
                 </div>
                 <div class="mb-5">
                     <label for="komen" class="text-2xl">Masukan :</label>
                     <br>
-                    <input type="text" placeholder="kirim pesan pada kami"
+                    <input type="text" placeholder="kirim pesan pada kami" name="pesan"
                         class="border border-slate-800 rounded-md py-1 px-3 w-full h-[140px]" id="komen">
                 </div>
                 <div class="w-full flex justify-between">
@@ -149,7 +150,7 @@
                     <button class="w-[62%] h-[40px] rounded-2xl text-white  bg-green-700 hover:bg-green-900"
                         type="submit">Submit</button>
                 </div>
-            </div>
+            </form>
 
 
         </div>

@@ -12,7 +12,7 @@
     <header>
         <h1>MAGETAN</h1>
         <nav>
-            <a href="index.html">Beranda</a>
+            <a href="{{ url('/') }}">Beranda</a>
         </nav>
     </header>
 
@@ -40,139 +40,29 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse ($feedback as $data)
                     <tr>
                         <td>1</td>
-                        <td>Akun Percobaan 1</td>
-                        <td>akunpercobaanl@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
+                        <td>{{ $data->name }}</td>
+                        <td>{{ $data->email }}</td>
+                        <td>{{ $data->pesan }}</td>
                         <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
+                                <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('hapus.feedback', $data->id) }}" method="POST">
+                                    
+                                    <span class="pin">PIN</span>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="delete">HAPUS</button>
+                                </form>
+                        
+                                {{-- <span class="delete" onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span> --}}
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Akun Percobaan 2</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Akun Percobaan 3</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>4</td>
-                        <td>Akun Percobaan 4</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>5</td>
-                        <td>Akun Percobaan 5</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>6</td>
-                        <td>Akun Percobaan 6</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>7</td>
-                        <td>Akun Percobaan 7</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>8</td>
-                        <td>Akun Percobaan 8</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>9</td>
-                        <td>Akun Percobaan 9</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>10</td>
-                        <td>Akun Percobaan 10</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>11</td>
-                        <td>Akun Percobaan 11</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>12</td>
-                        <td>Akun Percobaan 12</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                    <tr>
-                        <td>13</td>
-                        <td>Akun Percobaan 13</td>
-                        <td>akunpercobaan2@gmail.com</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit</td>
-                        <td>
-                            <span class="pin">PIN</span>
-                            <span class="delete"
-                                onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span>
-                        </td>
-                </tbody>
+                    @empty
+                        
+                    @endforelse
+                
+                    </tbody>
             </table>
         </div>
     </main>
