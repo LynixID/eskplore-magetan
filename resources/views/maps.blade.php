@@ -30,14 +30,14 @@
         }
 
         #map {
-            height: 100vh;
+            height: calc(100vh - 60px);
         }
     </style>
     <title>Maps Lokasi Wisata di Kabupaten Magetan</title>
 
 </head>
 
-<body>
+<body class="overflow-x-hidden">
     {{-- navbar start --}}
     <section id="navbar">
         <div class="logo">
@@ -53,21 +53,71 @@
     </section>
     {{-- navbar end --}}
 
+    {{-- Maps Start --}}
     <div id="map"></div>
-    <div class="w-[700px] h-[200px] bg-slate-500 text-5xll text-white">
-        {{-- @foreach ($titiklokasis as $item)
-            <h1>{{ $item->nama }}</h1>
-            <br>
-        @endforeach --}}
-    </div>
-</body>
+    {{-- Maps end --}}
 
+    {{-- Popup Start --}}
+    <section
+        class="w-1/4 h-[80dvh] absolute top-24 right-4 bg-[#F4FFF0] rounded-3xl z-[999] right-[-25%] shadow-2xl transition-all transition-[.3s] flex flex-col overflow-x-hidden overflow-y-auto "
+        id="deskripsi">
+
+        <div class="w-full border-b-2 ">
+            <img src="" alt="" id="img" width="100%" height="100%">
+        </div>
+        <div class="w-full h-1/6 border-b-2 p-4">
+            <h1 class="text-2xl font-semibold" id="judul1"></h1>
+            <h2 id="jenis"></h2>
+        </div>
+        <div class="w-full p-4 border-b-2 flex flex-col gap-3">
+            <div class="flex gap-2 items-center">
+                <img src="feather-icon/map.svg" alt="">
+                <p class="text-[12px]" id="alamat"></p>
+            </div>
+            <div class="flex gap-2 items-center">
+                <img src="feather-icon/clock.svg" alt="">
+                <p class="text-[12px]" id="jam"></p>
+            </div>
+            <div class="flex gap-2 items-center">
+                <img src="feather-icon/globe.svg" alt="">
+                <p class="text-[12px]" id="website"></p>
+            </div>
+        </div>
+        <div class="w-full p-4 border-b-2 flex flex-col gap-3">
+            <h1 class="text-xl" id="judul2"></h1>
+            <p class="text-[15px] text-justify" id="detil">
+            </p>
+        </div>
+        </div>
+
+    </section>
+    {{-- Popup end --}}
+
+</body>
 <script>
+    var judul1 = document.querySelector("#judul1");
+    var jenis = document.querySelector("#jenis");
+    var alamat = document.querySelector("#alamat");
+    var jam = document.querySelector("#jam");
+    var website = document.querySelector("#website");
+    var judul2 = document.querySelector("#judul2");
+    var detil = document.querySelector("#detil");
+    var img = document.querySelector("#img");
+
+
+
+    var popupDeskripsi = document.querySelector("#deskripsi");
     var map = L.map("map").setView([-7.662209, 111.354129], 12);
-    // ======================================
+
+    // Menambahkan layer peta
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    // Menambahkan markers ke peta
     var titikloaksis = {!! json_encode($titiklokasis) !!};
     titikloaksis.forEach(titiklokasi => {
-        // Memisahkan string koordinat menjadi latitude dan longitude
         var koordinatString = titiklokasi.koordinat;
         var koordinatArray = koordinatString.split(',');
         var latitude = parseFloat(koordinatArray[0]);
@@ -75,47 +125,44 @@
 
         var nama = titiklokasi.nama;
         var penjelasan = titiklokasi.penjelasan;
+        var id = titiklokasi.id;
 
-        L.marker([latitude, longitude]).addTo(map)
+        var marker = L.marker([latitude, longitude], {
+                id: id
+            }).addTo(map)
             .bindPopup(
                 `<b>${nama}</b><br>${penjelasan}`
-            )
-            .openPopup();
+            );
 
+        // Menambahkan event click pada marker
+        marker.on("click", function() {
+            popupDeskripsi.classList.remove("right-[-25%]");
+            map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
+            console.log(id)
+
+            judul1.innerText = titiklokasi.nama;
+            jenis.innerText = titiklokasi.jenis;
+            alamat.innerText = titiklokasi.alamat;
+            jam.innerText = titiklokasi.waktu;
+            website.innerText = titiklokasi.website;
+            judul2.innerText = titiklokasi.nama;
+            detil.innerText = titiklokasi.detil;
+            img.src = `asset/img.maps/${titiklokasi.foto}`;
+
+
+        });
+    }); // Ini adalah penutup untuk forEach
+
+    // Menangani klik pada peta untuk menyembunyikan popup deskripsi
+    map.on("click", function() {
+        popupDeskripsi.classList.add("right-[-25%]");
     });
-
-    // ==========================================================================
-
-
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-
-    var saranganMarker = L.marker([-7.679517, 111.292229]).addTo(map);
-
-    saranganMarker
-        .bindPopup(
-            "<b>Sumberagung camp</b><br>Buat nyoba aja sih ini"
-        )
-        .openPopup();
-
-    function onMapClick(e) {
-        alert("You clicked the map at " + e.latlng);
-    }
-
-    map.on("click", onMapClick);
-
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
-    }
-
-    map.on("click", onMapClick);
 </script>
+
+
+{{-- feather icon start --}}
+
+{{-- feather icon end --}}
+
 
 </html>
