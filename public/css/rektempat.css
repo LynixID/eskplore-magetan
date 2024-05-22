@@ -1,0 +1,206 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #a19f9f;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 400px;
+    margin-left: 850px;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    height: 10px;
+}
+
+/* Popup Styling */
+.popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 420px; /* Lebar pop-up */
+    height: 450px; /* Tinggi pop-up */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #1d1c1c;
+    border-radius: 20px;
+    z-index: 100;
+    overflow: auto; /* Jika konten melebihi ukuran pop-up */
+}
+
+/* Show Popup when Search Input is Focused */
+input[type="text"]:focus + .popup {
+    display: block;
+}
+
+.popup-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content img {
+    width: 100%; /* Lebar gambar 100% dari parent (.popup-content) */
+    height: auto; /* Tinggi gambar otomatis sesuai proporsi */
+    max-width: 300px; /* Maksimum lebar gambar */
+    border-radius: 10px; /* Radius sudut untuk gambar */
+    margin-bottom: 20px;
+}
+
+/* Close Button Styling */
+.close-popup {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Styling untuk Kotak Baru dan Kotak Kecil */
+.filter-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.kotak-baru {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 600px;
+    height: 100px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.kotak-baru h3 {
+    margin-top: 0;
+}
+
+.kotak-baru p {
+    margin-bottom: 0;
+}
+
+/* Styling untuk Kotak Kecil */
+.kotak-kecil-container {
+    display: flex;
+    flex-direction: column; /* Menjadikan kotak kecil berjajar vertikal */
+    margin-left: 50px; /* Letakkan ke kanan */
+    margin-right: -25px;
+}
+
+/* Styling untuk Tombol dengan Simbol */
+.kotak-kecil {
+    background-color: #f0f0f0;
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px; /* Jarak antara kotak kecil */
+    cursor: pointer; /* Ubah kursor menjadi pointer saat dihover */
+    font-size: 20px; /* Ukuran font */
+    display: flex; /* Menjadikan konten sebagai flexbox */
+    justify-content: center; /* Posisi teks ke tengah horizontal */
+    align-items: center; /* Posisi teks ke tengah vertikal */
+}
+
+/* Hover Effect Tombol */
+.kotak-kecil:hover {
+    background-color: #e0e0e0; /* Ubah warna saat dihover */
+}
+
+/* Pressed Effect Tombol */
+.kotak-kecil:active {
+    background-color: #ccc; /* Ubah warna saat ditekan */
+    box-shadow: none; /* Hilangkan shadow saat ditekan */
+}
+
+/* Styling untuk Gambar dan Informasi */
+.gambar-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.gambar-info-item {
+    border-radius: 10px;
+    height: 100px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gambar-info-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.gambar-info-item .gambar-caption {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Hover Effect pada Gambar-Info Item */
+.gambar-info-item:hover {
+    transform: translateY();
+}
+
+/* Pressed Effect pada Gambar-Info Item */
+.gambar-info-item:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling untuk Judul "Recommendation" */
+.recommendation-header {
+    text-align: left; /* Geser ke kiri */
+    margin-right: 200px; /* Margin kiri */
+    margin-bottom: 10px; /* Margin bawah */
+}
+
+/* Styling untuk "Top Search" */
+.gambar-info-item .gambar-caption h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Styling untuk paragraf "Description" */
+.top-search-paragraph {
+    font-size: 14px;
+    margin: 10px;
+}
+
+/* Styling untuk Link pada Top Search Paragraph */
+.top-search-paragraph a {
+    color: black; /* Warna teks putih untuk link */
+    text-decoration: none; /* Menghapus underline link */
+}
+
+/* Styling untuk Link Hover pada Top Search Paragraph */
+.top-search-paragraph a:hover {
+    text-decoration: none; /* Garis bawah saat hover */
+    color: blue; /* Warna teks kuning saat hover */
+}

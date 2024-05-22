@@ -1,233 +1,110 @@
+var judul1 = document.querySelector("#judul1");
+var jenis = document.querySelector("#jenis");
+var alamat = document.querySelector("#alamat");
+var jam = document.querySelector("#jam");
+var website = document.querySelector("#website");
+var judul2 = document.querySelector("#judul2");
+var detil = document.querySelector("#detil");
+var img = document.querySelector("#img");
+
+var popupDeskripsi = document.querySelector("#deskripsi");
 var map = L.map("map").setView([-7.662209, 111.354129], 12);
+
+// Menambahkan layer peta
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-var saranganMarker = L.marker([-7.67572, 111.22042]).addTo(map);
+// Menambahkan markers lokasi wisata ke peta
+var titikloaksis = JSON.parse("<?php echo json_encode($titiklokasis); ?>");
 
-var wahyuMarker = L.marker([-7.67563, 111.238129]).addTo(map);
+titikloaksis.forEach((titiklokasi) => {
+    var koordinatString = titiklokasi.koordinat;
+    var koordinatArray = koordinatString.split(",");
+    var latitude = parseFloat(koordinatArray[0]);
+    var longitude = parseFloat(koordinatArray[1]);
 
-var genilangitMarker = L.marker([-7.709753, 111.216796]).addTo(map);
+    var nama = titiklokasi.nama;
+    var penjelasan = titiklokasi.penjelasan;
+    var id = titiklokasi.id;
 
-var tirtoMarker = L.marker([-7.709467, 111.188672]).addTo(map);
+    var marker = L.marker([latitude, longitude], {
+        id: id,
+    })
+        .addTo(map)
+        .bindPopup(`<b>${nama}</b><br>${penjelasan}`);
 
-saranganMarker
-    .bindPopup(
-        "<b>Telaga Pasir Sarangan</b><br>Telaga pasir didaerah kabupaten yang menjadi destinasi utama Magetan."
-    )
-    .openPopup();
-wahyuMarker
-    .bindPopup(
-        "<b>Telaga Wahyu</b><br>Telaga kecil yang tak kalah indah sebagai object wisata."
-    )
-    .openPopup();
-genilangitMarker
-    .bindPopup(
-        "<b>Taman Geni Langit</b><br>Destinasi wisata keluiarga yang sangat menyenangkan."
-    )
-    .openPopup();
-tirtoMarker
-    .bindPopup(
-        "<b>Air Terjun Tirtosari</b><br>Air terjun indah di daerah Magetan."
-    )
-    .openPopup();
+    // Menambahkan event click pada marker
+    marker.on("click", function () {
+        popupDeskripsi.classList.remove("right-[-25%]");
+        map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
+        console.log(id);
 
-function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
-}
+        judul1.innerText = titiklokasi.nama;
+        jenis.innerText = titiklokasi.jenis;
+        alamat.innerText = titiklokasi.alamat;
+        jam.innerText = titiklokasi.waktu;
+        website.innerText = titiklokasi.website;
+        judul2.innerText = titiklokasi.nama;
+        detil.innerText = titiklokasi.detil;
+        img.src = `asset/img.maps/${titiklokasi.foto}`;
+    });
+}); // Ini adalah penutup untuk forEach
 
-map.on("click", onMapClick);
+// coba buat wisata kuliner start
+var titikloaksis = JSON.parse("<?php echo json_encode($titiklokasis); ?>");
+wisata_kuliners.forEach((wisata_kuliner) => {
+    var koordinatString = wisata_kuliner.koordinat;
+    var koordinatArray = koordinatString.split(",");
+    var latitude = parseFloat(koordinatArray[0]);
+    var longitude = parseFloat(koordinatArray[1]);
 
-var popup = L.popup();
+    var nama = wisata_kuliner.nama;
+    var penjelasan = wisata_kuliner.penjelasan;
+    var id = wisata_kuliner.id;
 
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(map);
-}
+    // menambahkan icon baru
+    var greenIcon = L.icon({
+        iconUrl: "asset/foodPin2.png",
 
-map.on("click", onMapClick);
+        iconSize: [40, 40],
+        iconAnchor: [22, 94],
+        popupAnchor: [-3, -86],
+    });
 
-// GeoJSON ends
-var geojsonFeature = {
-    type: "Feature",
-    properties: {
-        name: "Coors Field",
-        amenity: "Baseball Stadium",
-        popupContent: "This is where the Rockies play!",
-    },
-    geometry: {
-        type: "Point",
-        coordinates: [-7.455071, 111.548162],
-    },
-};
-
-L.geoJSON(geojsonFeature).addTo(map);
-
-var myLines = [
-    {
-        type: "LineString",
-        coordinates: [
-            [-100, 40],
-            [-105, 45],
-            [-110, 55],
-        ],
-    },
-    {
-        type: "LineString",
-        coordinates: [
-            [-105, 40],
-            [-110, 45],
-            [-115, 55],
-        ],
-    },
-];
-
-var myLines = [
-    {
-        type: "LineString",
-        coordinates: [
-            [-100, 40],
-            [-105, 45],
-            [-110, 55],
-        ],
-    },
-    {
-        type: "LineString",
-        coordinates: [
-            [-105, 40],
-            [-110, 45],
-            [-115, 55],
-        ],
-    },
-];
-
-var myStyle = {
-    color: "#ff7800",
-    weight: 5,
-    opacity: 0.65,
-};
-
-L.geoJSON(myLines, {
-    style: myStyle,
-}).addTo(map);
-
-var states = [
-    {
-        type: "Feature",
-        properties: { party: "Republican" },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
-                [
-                    [-104.05, 48.99],
-                    [-97.22, 48.98],
-                    [-96.58, 45.94],
-                    [-104.03, 45.94],
-                    [-104.05, 48.99],
-                ],
-            ],
+    // menambahkan titik lokasi di maps
+    var marker = L.marker(
+        [latitude, longitude],
+        {
+            icon: greenIcon,
         },
-    },
-    {
-        type: "Feature",
-        properties: { party: "Democrat" },
-        geometry: {
-            type: "Polygon",
-            coordinates: [
-                [
-                    [-109.05, 41.0],
-                    [-102.06, 40.99],
-                    [-102.03, 36.99],
-                    [-109.04, 36.99],
-                    [-109.05, 41.0],
-                ],
-            ],
-        },
-    },
-];
-
-L.geoJSON(states, {
-    style: function (feature) {
-        switch (feature.properties.party) {
-            case "Republican":
-                return { color: "#ff0000" };
-            case "Democrat":
-                return { color: "#0000ff" };
+        {
+            id: id,
         }
-    },
-}).addTo(map);
+    )
+        .addTo(map)
+        .bindPopup(`<b>${nama}</b><br>${penjelasan}`);
 
-var geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8,
-};
+    // Menambahkan event click pada marker
+    marker.on("click", function () {
+        popupDeskripsi.classList.remove("right-[-25%]");
+        map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
+        console.log(id);
 
-L.geoJSON(someGeojsonFeature, {
-    pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-    },
-}).addTo(map);
+        judul1.innerText = wisata_kuliner.nama;
+        alamat.innerText = wisata_kuliner.alamat;
+        jam.innerText = wisata_kuliner.waktu;
+        judul2.innerText = wisata_kuliner.nama;
+        detil.innerText = wisata_kuliner.detil;
+        img.src = `asset/img.maps/${wisata_kuliner.foto}`;
+    });
+});
 
-function onEachFeature(feature, layer) {
-    // does this feature have a property named popupContent?
-    if (feature.properties && feature.properties.popupContent) {
-        layer.bindPopup(feature.properties.popupContent);
-    }
-}
+// coba buat wisata kuliner end
 
-var geojsonFeature = {
-    type: "Feature",
-    properties: {
-        name: "Coors Field",
-        amenity: "Baseball Stadium",
-        popupContent: "This is where the Rockies play!",
-    },
-    geometry: {
-        type: "Point",
-        coordinates: [-104.99404, 39.75621],
-    },
-};
-
-L.geoJSON(geojsonFeature, {
-    onEachFeature: onEachFeature,
-}).addTo(map);
-
-var someFeatures = [
-    {
-        type: "Feature",
-        properties: {
-            name: "Coors Field",
-            show_on_map: true,
-        },
-        geometry: {
-            type: "Point",
-            coordinates: [-104.99404, 39.75621],
-        },
-    },
-    {
-        type: "Feature",
-        properties: {
-            name: "Busch Field",
-            show_on_map: false,
-        },
-        geometry: {
-            type: "Point",
-            coordinates: [-104.98404, 39.74621],
-        },
-    },
-];
-
-L.geoJSON(someFeatures, {
-    filter: function (feature, layer) {
-        return feature.properties.show_on_map;
-    },
-}).addTo(map);
-// GeoJSON ends
+// Menangani klik pada peta untuk menyembunyikan popup deskripsi
+map.on("click", function () {
+    popupDeskripsi.classList.add("right-[-25%]");
+});

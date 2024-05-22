@@ -236,3 +236,13 @@ body {
     left: -600px;
 }
 /* Feedback form ends */
+
+/* Tambah Lokasi Start */
+table * {
+    border: 2px solid white;
+}
+
+table tr td {
+    padding: 5px 8px;
+}
+/* Tambah Lokasi End */
