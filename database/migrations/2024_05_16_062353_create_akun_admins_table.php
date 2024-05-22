@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akun_admins', function (Blueprint $table) {
-            $table->id();
             $table->string('nama_depan', 20);
             $table->string('nama_belakang', 20);
-            $table->string('alamat_email', 50)->unique;
+            $table->varchar('alamat_email', 50)->unique;
             $table->string('password', 20);
             $table->string('id_admin', 11);
             $table->timestamps();

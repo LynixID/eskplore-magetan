@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AkunAdmin extends Model
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
     protected $table = "akun_admins";
     protected $primaryKey = "id_admin";
     protected $fillable = [

@@ -129,9 +129,9 @@
             <input type="text" class="input" placeholder="Kode verifikasi">
         </div>
     </div>
-    <a href="/login" class="btn-popup">Konfirmasi</a>
+    <button class="btn-popup">Konfirmasi</button>
     <div class="cancel">
-        <p><class="opt" a href="login">Cancel</a></p> 
+        <p><a href="login" class="ket">Cancel</a></p> 
     </div>
     </div>
 </div>

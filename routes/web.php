@@ -28,7 +28,7 @@ Route::get('/maps', function () {
 });
 
 Route::get('/beranda-admin', function () {
-    return view('berandaadmin');
+    return view('berandaadmin')->name('beranda');
 });
 
 
@@ -45,11 +45,6 @@ Route::get('/verifikasi', function () {
 });
 
 Route::get('/login',[BuatAkunController::class, 'login'])->name('login');
-Route::post('/login',[BuatAkunController::class, 'login'])->name('login');
+Route::post('/login',[BuatAkunController::class, 'loginPost'])->name('login.post');
 Route::get('/buat-akun',[BuatAkunController::class, 'buat-akun'])->name('buat-akun');
-Route::post('/buat-akun',[BuatAkunController::class, 'buat-akun'])->name('buat-akun');
-
-// Route::post('/buat', [CreateAkunController::class, 'create']);
-// Route::post('/buat', function(){
-//     return view('login');
-// });
+Route::post('/buat-akun',[BuatAkunController::class, 'buatAkunPost'])->name('buat-akun.post');

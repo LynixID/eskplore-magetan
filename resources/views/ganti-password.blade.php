@@ -130,7 +130,7 @@
             <input type="password" class="input" placeholder="Ketik ulang password baru">
         </div>
     </div>
-    <a href="/verifikasi" class="btn-popup">Reset</a>
+    <button class="btn-popup">Reset</button>
     <div class="cancel">
         <p ><a href="/login" class="ket">Cancel</a></p> 
     </div>

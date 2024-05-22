@@ -41,9 +41,6 @@ body{
     font-family: "Poppins", sans-serif;
     color: #c7d5c7;
 }
-.isi{
-    padding: 0%;
-}
 .input{
     color: rgba(1, 50, 32, 1);
     font-family: "Poppins", sans-serif;
@@ -71,14 +68,13 @@ body{
     color: white;
     font-family: "Poppins", sans-serif;
     font-size: larger;
-    align-items: center;
-    padding: 10px 100px 10px 100px;
+    padding: 10px 150px 10px 100px;
     width: 90px;
     display: flexbox;
     border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
-    margin:100px 0 0 120px;
+    margin-left:110px;
 }
 .ket {
     text-decoration: none;
@@ -124,30 +120,29 @@ body{
         <p>Halaman ini digunakan untuk login admin<br>bagi pengunjung biasa mohon tidak mengisinya</p>
         <p> Terima kasih!</p>
     </div>
-    <div class ="pop-up">
+    <form action="{{route('login.post')}}" method="POST" class ="pop-up">
+        @csrf
         <div class="np"><h1>Login</h1></div><br>
-        <div class="isi"></div>
         <div class="input">
             <i class='bx bxs-user'></i>
-            <input type="text" class="input" placeholder="Username">
+            <input type="text" class="input" placeholder="Username" name="nama_depan">
         </div>
         <div class="input">
             <i class='bx bxs-id-card'></i>
-            <input type="text" class="input" placeholder="ID Admin"/>
+            <input type="text" class="input" placeholder="ID Admin" name="id_admin"/>
         </div>
         <div class="input">
             <i class='bx bx-key' ></i>
-            <input type="password" class="input" placeholder="Password" required/>    
+            <input type="password" class="input" placeholder="Password" name="password" required/>    
         </div>
-        
         <div class="pw">
             <p><a href="/ganti-password" class="ket">Lupa password</a></p>
         </div>
-        <a href="/beranda-admin" class="btn-popup">Masuk</a>
+        <button type="submit" class="btn-popup">Masuk</button>
         <div class="buat-akun">
             <p><a href="/buat" class="ket">Buat akun</a></p>
         </div>
-    </div>
+</form>
     </div>
     <!-- login end-->
 </body>

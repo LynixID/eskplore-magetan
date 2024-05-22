@@ -37,9 +37,6 @@
     font-family: "Poppins", sans-serif;
     color: #c7d5c7;
 }
-.isi{
-    padding: 0%;
-}
 .input{
     color: rgba(1, 50, 32, 1);
     font-family: "Poppins", sans-serif;
@@ -68,7 +65,7 @@
     font-family: "Poppins", sans-serif;
     font-size: larger;
     text-align: center;
-    padding: 10px 100px 10px 100px;
+    padding: 10px 150px 10px 100px;
     width: 70px;
     display: flex;
     border-radius: 10px;
@@ -121,28 +118,27 @@
         </div>
         <div class="pop-up">
             <div class="np"> <h1>Buat Akun</h1></div>
-            <div class="isi">
-                <form action="/buat" method="post">
+                <form action="{{route('buat-akun.post')}}" method="POST" class="pop-up">
                     @csrf
                     <div class="input">
-                        <input type="text" class="input" name="nama_depan" placeholder="Nama depan">
-                        <input type="text" class="input" name="nama_belakang" placeholder="Nama belakang">
+                        <input type="text" class="input" name="nama_depan" placeholder="Nama depan" name="nama_depan">
+                        <input type="text" class="input" name="nama_belakang" placeholder="Nama belakang" name=
+                        "nama_belakang">
                     </div>
                     <div class="input">
-                        <input type="email" class="input" name="alamat_email" placeholder="Alamat email" required>
+                        <input type="email" class="input" name="alamat_email" placeholder="Alamat email" required name="alamat_email">
                     </div>
                     <div class="input">
-                        <input type="password" class="input" name="password" placeholder="Password" required>
+                        <input type="password" class="input" name="password" placeholder="Password" required name="password">
                     </div>
                     <div class="input">
                         <input type="password" class="input" placeholder="Ketik ulang Password" required>
                     </div>
                     <div class="input">
-                        <input type="text" class="input" name="id_admin" placeholder="ID Admin" required>
+                        <input type="text" class="input" name="id_admin" placeholder="ID Admin" required name="id_admin">
                     </div>
-                    <a href="{{route('login')}}" button type="submit" class="btn-popup"> Kirim </button>
+                    <button type="submit" class="btn-popup"> Kirim </button>
                 </form>
-            </div>
             <div class="login">
                 <p><a href="/login" class="ket">Login</a></p>
             </div>
