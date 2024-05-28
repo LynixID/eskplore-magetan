@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('akun_admins', function (Blueprint $table) {
             $table->string('nama_depan', 20);
             $table->string('nama_belakang', 20);
-            $table->varchar('alamat_email', 50)->unique;
+            $table->string('alamat_email', 50)->unique;
             $table->string('password', 20);
             $table->string('id_admin', 11);
             $table->timestamps();
