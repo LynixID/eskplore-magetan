@@ -120,7 +120,8 @@
                     menyempurnakan project
                     kami..</p>
             </div>
-            <form class="w-5/12 h-3/4 bg-white relative rounded-2xl p-5" action="{{ route('tambah.feedback') }}" method="POST">
+            <form class="w-5/12 h-3/4 bg-white relative rounded-2xl p-5" action="{{ route('tambah.feedback') }}"
+                method="POST">
                 @csrf
                 <div class="mb-5">
                     <label for="name" class="text-2xl">Nama Anda :</label>
