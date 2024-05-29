@@ -138,7 +138,7 @@ body{
         <div class="pw">
             <p><a href="/ganti-password" class="ket">Lupa password</a></p>
         </div>
-        <button type="submit" class="btn-popup">Masuk</button>
+        <button type="submit" href="/beranda" class="btn-popup">Masuk</button>
         <div class="buat-akun">
             <p><a href="/buat" class="ket">Buat akun</a></p>
         </div>

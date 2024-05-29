@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('akun_admins', function (Blueprint $table) {
             $table->string('nama_depan', 20);
             $table->string('nama_belakang', 20);
-            $table->string('alamat_email', 50)->unique;
-            $table->string('password', 20);
+            $table->string('alamat_email', 20);
+            $table->string('password', 100);
             $table->string('id_admin', 11);
             $table->timestamps();
         });
@@ -27,5 +27,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('akun_admins');
+        Schema::table('akun_admins', function (Blueprint $table) {
+            $table->dropColumn('alamat_email');
+        });
     }
 };

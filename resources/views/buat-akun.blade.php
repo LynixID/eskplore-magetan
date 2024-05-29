@@ -16,11 +16,10 @@
     background-color: rgba(1, 50, 32, 1);
     }
 .pop-up{
-    display: absolute;
     margin-left: auto;
     margin-bottom: 50px;
     width: 455px;
-    height: 555px;
+    height: 439px;
     border-radius: 5px;
     background-color: #c9d4c9;
 }
@@ -92,7 +91,6 @@
     font-family: "Poppins", sans-serif;
     font-size: small;
     padding: 10px;
-    margin-top: 10px;
     margin-right: 10px;
     text-align: right;
     cursor: pointer;
@@ -136,6 +134,9 @@
                     </div>
                     <div class="input">
                         <input type="text" class="input" name="id_admin" placeholder="ID Admin" required name="id_admin">
+                    </div>
+                    <div class="input">
+                        <input type="text" class="input" name="kode_aktivasi" placeholder="Kode Aktivasi" required name="kode_aktivasi">
                     </div>
                     <button type="submit" class="btn-popup"> Kirim </button>
                 </form>
