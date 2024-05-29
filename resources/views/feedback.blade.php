@@ -18,7 +18,7 @@
 
     <main>
         <h2>Feedback</h2>
-        <div class="keterangan-feedback">
+        {{-- <div class="keterangan-feedback">
             <p>Total Keseluruhan Feedback</p>
             <p>Feedback yang di pin</p>
             <p>Feedback yang di hapus</p>
@@ -27,7 +27,7 @@
             <p>1,260</p>
             <p>770</p>
             <p>10</p>
-        </div>
+        </div> --}}
         <div class="feedback">
             <table>
                 <thead>
@@ -42,14 +42,14 @@
                 <tbody>
                     @forelse ($feedback as $data)
                     <tr>
-                        <td>1</td>
+                        <td>{{ $data->id }}</td>
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->email }}</td>
                         <td>{{ $data->pesan }}</td>
                         <td>
                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('hapus.feedback', $data->id) }}" method="POST">
                                     
-                                    <span class="pin">PIN</span>
+                                    {{-- <span class="pin">PIN</span> --}}
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete">HAPUS</button>
