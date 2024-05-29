@@ -246,3 +246,39 @@ table tr td {
     padding: 5px 8px;
 }
 /* Tambah Lokasi End */
+
+/* Input Data Lokasi Start */
+#list-data:nth-child(odd) {
+    background-color: #e5ffdb;
+}
+
+table * {
+    border: none;
+}
+
+table #judul-tabel * {
+    padding: 10px 0;
+}
+
+form input,
+form select,
+form textarea {
+    border: 2px solid rgb(16, 103, 16);
+    border-radius: 10px;
+    width: 100%;
+}
+
+form input {
+    padding-left: 11px;
+}
+
+form label {
+    font-size: 1.3rem;
+    margin-right: 20px;
+}
+
+form div {
+    display: flex;
+    justify-content: end;
+}
+/* Input Data Lokasi Start */
