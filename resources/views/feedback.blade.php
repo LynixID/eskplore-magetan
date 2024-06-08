@@ -10,14 +10,14 @@
 
 <body>
     <header>
-        <h1>MAGETAN</h1>
+        <img src="/asset/img.beranda/Logo.png" alt="" width="120px">
         <nav>
-            <a href="{{ url('/') }}">Beranda</a>
+            <a href="{{ url('/') }}" class="beranda">Beranda</a>
         </nav>
     </header>
 
     <main>
-        <h2>Feedback</h2>
+        <h2 class="Tfeedback ">Feedback</h2>
         {{-- <div class="keterangan-feedback">
             <p>Total Keseluruhan Feedback</p>
             <p>Feedback yang di pin</p>
@@ -31,7 +31,7 @@
         <div class="feedback">
             <table>
                 <thead>
-                    <tr>
+                    <tr class="text-head">
                         <th>No</th>
                         <th>Nama</th>
                         <th>Gmail</th>
@@ -52,7 +52,7 @@
                                     {{-- <span class="pin">PIN</span> --}}
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="delete">HAPUS</button>
+                                    <button type="submit" class="delete" style="color: #ffff">HAPUS</button>
                                 </form>
                         
                                 {{-- <span class="delete" onclick="return confirm('Yakin ingin menghapus feedback ini?')">DELETE</span> --}}
