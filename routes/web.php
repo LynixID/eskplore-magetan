@@ -55,10 +55,14 @@ Route::get('/rektempat', function () {
     return view('rektempat');
 });
 
-Route::get('/lokasiwisata', [TitiklokasiController::class, 'outputLokasiWisata']);
-Route::get('/lokasikuliner', [WisataKulinerController::class, 'outputLokasiKuliner']);
-Route::get('/lokasipembelanjaan', [WisataPembelanjaanController::class, 'outputLokasiPembelanjaan']);
+Route::get('/lokasiwisata', [TitiklokasiController::class, 'outputLokasiWisata'])->name('lokasiwisata');
+Route::get('/lokasikuliner', [WisataKulinerController::class, 'outputLokasiKuliner'])->name('lokasikuliner');
+Route::get('/lokasipembelanjaan', [WisataPembelanjaanController::class, 'outputLokasiPembelanjaan'])->name('lokasipembelanjaan');
 
 Route::post('/lokasiwisata', [TitiklokasiController::class, 'inputLokasiWisata']);
 Route::post('/lokasikuliner', [WisataKulinerController::class, 'inputLokasiKuliner']);
 Route::post('/lokasipembelanjaan', [WisataPembelanjaanController::class, 'inputLokasiPembelanjaan']);
+
+Route::post('/lokasiwisata/{id}', [TitiklokasiController::class, 'destroy'])->name('hapus.wisata');
+Route::post('/lokasikuliner/{id}', [WisataKulinerController::class, 'destroy'])->name('hapus.kuliner');
+Route::post('/lokasipembelanjaan/{id}', [WisataPembelanjaanController::class, 'destroy'])->name('hapus.pembelanjaan');

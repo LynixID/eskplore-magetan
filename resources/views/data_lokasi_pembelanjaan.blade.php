@@ -65,6 +65,7 @@
                     <td>Penjelasan</td>
                     <td>Detail Lokasi</td>
                     <td>Foto</td>
+                    <td>Aksi</td>
                 </tr>
                 @php
                     $no = 1;
@@ -102,6 +103,14 @@
                             @endif
                         </td>
                         <td>{{ $item->foto }}</td>
+                        <td>
+                            <form action="{{ Route('hapus.pembelanjaan', $item->id) }}" method="post">
+                                @csrf
+                                <!-- Hidden input untuk memperolah id -->
+                                <input type="submit" value="Hapus"
+                                    class="py-2 px-4 bg-red-500 text-white font-medium border-none cursor-pointer hover:bg-red-800 duration-[200ms]">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </table>
@@ -127,24 +136,26 @@
                         @csrf
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
                             <div class="flex flex-col"><label for="nama">Nama Lokasi</label>
-                                <input type="text" id="nama" name="nama">
+                                <input type="text" required id="nama" name="nama">
                             </div>
                             <div class="flex flex-col"><label for="koordinat">Koordinat Lokasi</label>
-                                <input type="text" id="koordinat" name="koordinat">
+                                <input type="text" required id="koordinat" name="koordinat">
                             </div>
                             <div class="flex flex-col"><label for="alamat">Alamat</label>
-                                <input type="text" id="alamat" name="alamat">
+                                <input type="text" required id="alamat" name="alamat">
                             </div>
                             <div class="flex flex-col"><label for="waktu">Jam Operasi</label>
-                                <input type="text" id="waktu" name="waktu">
+                                <input type="text" required id="waktu" name="waktu">
                             </div>
                         </div>
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
                             <div class="flex flex-col"><label for="penjelasan">Penjelasan Lokasi</label>
-                                <input type="text" id="penjelasan" name="penjelasan" class="w-full h-[80px]">
+                                <input type="text" required id="penjelasan" name="penjelasan"
+                                    class="w-full h-[80px]">
                             </div>
                             <div class="flex flex-col"><label for="detil">Detail Penjelasan</label>
-                                <input type="text" id="detil" name="detil" class="w-full h-[180px]">
+                                <input type="text" required id="detil" name="detil"
+                                    class="w-full h-[180px]">
                             </div>
                             <div>
                                 <label for="foto">Foto Lokasi</label>
