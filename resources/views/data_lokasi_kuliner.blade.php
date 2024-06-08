@@ -122,7 +122,8 @@
                 <div class="w-full text-center h-[100px] text-[2.7rem] flex items-center justify-center">Tambah Data
                     Lokasi</div>
                 <div class="w-full h-[calc(100%-48px)] flex justify-between">
-                    <form action="/lokasikuliner" method="POST" class="flex w-full h-full justify-between pb-16">
+                    <form action="/lokasikuliner" method="POST" class="flex w-full h-full justify-between pb-16"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
                             <div class="flex flex-col"><label for="nama">Nama Lokasi</label>

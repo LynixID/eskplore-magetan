@@ -3,9 +3,11 @@
     use App\Http\Controllers\ProfileController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\BuatAkunController;
+    use App\Http\Controllers\FeedbackController;
+    use App\Http\Controllers\TitiklokasiController;
 
     Route::get('/', function () {
-        return view('welcome');
+        return view('home');
     });
 
     Route::get('/dashboard', function () {
@@ -20,9 +22,6 @@
 
     require __DIR__ . '/auth.php';
 
-    // Route::get('/home', function () {
-    //     return view('home');
-    // });
     Route::get('/maps', function () {
         return view('maps');
     });
@@ -48,3 +47,9 @@
     Route::post('/login', [BuatAkunController::class, 'loginPost'])->name('login.post');
     Route::get('/buat-akun', [BuatAkunController::class, 'buat-akun'])->name('buat-akun');
     Route::post('/buat-akun', [BuatAkunController::class, 'buatAkunPost'])->name('buat-akun.post');
+
+    Route::post('/feedback', [FeedbackController::class, 'proses_tambah'])->name('tambah.feedback');
+    Route::get('/feedback', [FeedbackController::class, 'index']);
+    Route::post('/feedback', [FeedbackController::class, 'proses_hapus'])->name('hapus.feedback');
+
+    Route::get('/buat-akun', [TitiklokasiController::class, 'buatAkunPost']);

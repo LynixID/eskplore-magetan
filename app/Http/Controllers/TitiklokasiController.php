@@ -26,6 +26,8 @@ class TitiklokasiController extends Controller
 
     public function create(Request $request)
     {
+
+
         Titiklokasi::create($request->except('_token', 'submit'));
         $titiklokasis = Titiklokasi::all();
         return view('tambahlokasi', compact(['titiklokasis']));

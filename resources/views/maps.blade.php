@@ -146,41 +146,6 @@
     }
     map.on('click', onMapClick);
 
-    // Menambahkan markers lokasi wisata ke peta
-    var titikloaksis = {!! json_encode($titiklokasis) !!};
-    titikloaksis.forEach((titiklokasi) => {
-        var koordinatString = titiklokasi.koordinat;
-        var koordinatArray = koordinatString.split(",");
-        var latitude = parseFloat(koordinatArray[0]);
-        var longitude = parseFloat(koordinatArray[1]);
-
-        var nama = titiklokasi.nama;
-        var penjelasan = titiklokasi.penjelasan;
-        var id = titiklokasi.id;
-
-        var marker = L.marker([latitude, longitude], {
-                id: id,
-            })
-            .addTo(map)
-            .bindPopup(`<b>${nama}</b><br>${penjelasan}`);
-
-        // Menambahkan event click pada marker
-        marker.on("click", function() {
-            popupDeskripsi.classList.remove("right-[-25%]");
-            map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
-            console.log(id);
-
-            judul1.innerText = titiklokasi.nama;
-            jenis.innerText = titiklokasi.jenis;
-            alamat.innerText = titiklokasi.alamat;
-            jam.innerText = titiklokasi.waktu;
-            website.innerText = titiklokasi.website;
-            judul2.innerText = titiklokasi.nama;
-            detil.innerText = titiklokasi.detil;
-            img.src = `asset/img.maps/${titiklokasi.foto}`;
-        });
-    }); // Ini adalah penutup untuk forEach
-
     // coba buat wisata kuliner start
     var wisata_kuliners = {!! json_encode($wisata_kuliners) !!};
     wisata_kuliners.forEach((wisata_kuliner) => {
@@ -240,6 +205,8 @@
 
     // coba buat wisata kuliner end
 
+
+
     // coba buat wisata pembelanjaan start
     var wisata_pembelanjaans = {!! json_encode($wisata_pembelanjaans) !!};
     wisata_pembelanjaans.forEach((wisata_pembelanjaan) => {
@@ -290,6 +257,41 @@
     });
 
     // coba buat wisata pembelanjaan end
+
+    // Menambahkan markers lokasi wisata ke peta
+    var titikloaksis = {!! json_encode($titiklokasis) !!};
+    titikloaksis.forEach((titiklokasi) => {
+        var koordinatString = titiklokasi.koordinat;
+        var koordinatArray = koordinatString.split(",");
+        var latitude = parseFloat(koordinatArray[0]);
+        var longitude = parseFloat(koordinatArray[1]);
+
+        var nama = titiklokasi.nama;
+        var penjelasan = titiklokasi.penjelasan;
+        var id = titiklokasi.id;
+
+        var marker = L.marker([latitude, longitude], {
+                id: id,
+            })
+            .addTo(map)
+            .bindPopup(`<b>${nama}</b><br>${penjelasan}`);
+
+        // Menambahkan event click pada marker
+        marker.on("click", function() {
+            popupDeskripsi.classList.remove("right-[-25%]");
+            map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
+            console.log(id);
+
+            judul1.innerText = titiklokasi.nama;
+            jenis.innerText = titiklokasi.jenis;
+            alamat.innerText = titiklokasi.alamat;
+            jam.innerText = titiklokasi.waktu;
+            website.innerText = titiklokasi.website;
+            judul2.innerText = titiklokasi.nama;
+            detil.innerText = titiklokasi.detil;
+            img.src = `asset/img.maps/${titiklokasi.foto}`;
+        });
+    }); // Ini adalah penutup untuk forEach
 
     // Menangani klik pada peta untuk menyembunyikan popup deskripsi
     map.on("click", function() {
