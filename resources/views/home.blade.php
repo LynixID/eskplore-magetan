@@ -157,13 +157,7 @@
         </div>
 
     </section>
-    {{-- <div class="w-full h-72  bg-slate-600 text-white text-6xl">
-        @foreach ($titiklokasis as $titiklokasi)
-            <h1>{{ $titiklokasi->koordinat }}</h1>
-            <h1>{{ $titiklokasi->nm - wisata }}</h1>
-        @endforeach
-    </div> --}}
-    <!-- feedback form end -->
+
 
 
     {{-- Script Start --}}

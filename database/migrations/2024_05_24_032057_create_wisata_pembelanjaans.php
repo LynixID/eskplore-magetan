@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('titiklokasis', function (Blueprint $table) {
+        Schema::create('wisata_pembelanjaans', function (Blueprint $table) {
             $table->id();
             $table->string("nama");
-            $table->enum('jenis', ['Wisata ALam, Wisata Buatan']);
             $table->string("koordinat");
             $table->string("alamat");
             $table->string("waktu");
-            $table->string("website");
             $table->string("penjelasan");
             $table->string("detil");
+            $table->string("foto");
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('titiklokasis');
+        Schema::dropIfExists('wisata_pembelanjaans');
     }
 };
