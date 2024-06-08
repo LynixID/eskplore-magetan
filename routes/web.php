@@ -1,3 +1,4 @@
+<<<<<<< HEAD
     <?php
 
     use App\Http\Controllers\ProfileController;
@@ -5,23 +6,26 @@
     use App\Http\Controllers\BuatAkunController;
     use App\Http\Controllers\FeedbackController;
     use App\Http\Controllers\TitiklokasiController;
+=======
+<?php
+use App\Http\Controllers\TitiklokasiController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FeedbackController;
+>>>>>>> 42a9000c09afd5f27553260852157307e578c2ba
 
     Route::get('/', function () {
         return view('home');
     });
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
-
-    Route::middleware('auth')->group(function () {
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/feedback', function () {
+        return view('feedback');
     });
 
-    require __DIR__ . '/auth.php';
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+    Route::post('/proses_tambah)', [FeedbackController::class, 'proses_tambah'])->name('tambah.feedback');
+    Route::delete('/proses_hapus/{id})', [FeedbackController::class, 'proses_hapus'])->name('hapus.feedback');
 
+<<<<<<< HEAD
     Route::get('/maps', function () {
         return view('maps');
     });
@@ -53,3 +57,15 @@
     Route::post('/feedback', [FeedbackController::class, 'proses_hapus'])->name('hapus.feedback');
 
     Route::get('/buat-akun', [TitiklokasiController::class, 'buatAkunPost']);
+=======
+    Route::get('/maps', [TitiklokasiController::class, 'index']);
+    Route::get('/tambahlokasi', [TitiklokasiController::class, 'read']);
+    Route::post('/tambahlokasi', [TitiklokasiController::class, 'create']);
+    Route::delete('/tambahlokasi/{id}', [TitiklokasiController::class, 'destroy']);
+
+
+    Route::get('/rektempat', function () {
+        return view('rektempat');
+    });
+
+>>>>>>> 42a9000c09afd5f27553260852157307e578c2ba
