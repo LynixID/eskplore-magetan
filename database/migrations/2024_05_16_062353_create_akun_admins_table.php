@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akun_admins', function (Blueprint $table) {
-            $table->string('nama_depan', 20);
-            $table->string('nama_belakang', 20);
+            $table->string('nama_lengkap', 50);
             $table->string('alamat_email', 20);
             $table->string('password', 100);
-            $table->string('id_admin', 11);
+            $table->unsignedBigInteger('id_admin');            
             $table->timestamps();
         });
     }
@@ -28,7 +27,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('akun_admins');
         Schema::table('akun_admins', function (Blueprint $table) {
-            $table->dropColumn('alamat_email');
+            $table->dropColumn('id_admin');
         });
     }
 };

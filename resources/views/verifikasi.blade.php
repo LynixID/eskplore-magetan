@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="pop-up.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Verifikasi password</title>
     <style>
     .bg{
@@ -69,14 +70,22 @@
     font-family: "Poppins", sans-serif;
     font-size: larger;
     padding: 10px 100px 10px 100px;
-    width: 70px;
-    display: flex;
+    width: 100px;
     border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
-    margin:100px 0 0 120px;
+    margin-left: 30%;
 }
-
+.btn-verif{
+    background-color: rgba(1, 50, 32, 1);
+    border-color: white;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: small;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    margin-left: 80%;
+}
 .ket {
     text-decoration: none;
     color: #5b5b5b;
@@ -117,14 +126,16 @@
 <div class="bg">
     <div class="info">
         <h1>Tunggu beberapa saat</h1>
-        <p>lalu masukkan kode <br>untuk mengatur ulang password</p>
+        <p>Masukkan kode <br>untuk mengatur ulang password</p>
 </div>
     <div class="pop-up">
         <div class="np"><h1>Verifikasi Email</h1></div>
-    <div class="isi">
+        <form action="{{route('verifikasi.post')}}" method="POST" class="pop-up">
+            @csrf
         <div class="input">
             <input type="email" class="input" placeholder="Alamat email">
         </div>
+        <button class="btn-verif"><i class='bx bxs-send'></i></button>
         <div class="input">
             <input type="text" class="input" placeholder="Kode verifikasi">
         </div>
@@ -133,7 +144,7 @@
     <div class="cancel">
         <p><a href="login" class="ket">Cancel</a></p> 
     </div>
-    </div>
+</form>
 </div>
     <!-- verif email end-->
 </body>

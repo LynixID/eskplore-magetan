@@ -18,6 +18,7 @@
 .pop-up{
     margin-left: auto;
     margin-bottom: 50px;
+    display: flexbox;
     width: 455px;
     height: 439px;
     border-radius: 5px;
@@ -77,15 +78,6 @@
     text-decoration: none;
     color: #5b5b5b;
 }
-.buat-akun{
-    color: grey;
-    font-family: "Poppins", sans-serif;
-    font-size: small;
-    padding: 10px;
-    margin-top: 10px;
-    text-align: center;
-    cursor: pointer;
-}
 .login{
     color: grey;
     font-family: "Poppins", sans-serif;
@@ -105,6 +97,18 @@
     text-align: right;
     cursor: pointer;
 }
+.alert-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+    padding: 10px;
+    background-color: #c9d4c9;
+    color: rgba(1, 50, 32, 1);
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-bottom: 5%;
+}
 </style>
 </head>
 <body>
@@ -114,37 +118,41 @@
             <h1>Hi admin baru</h1>
             <p>Pastikan data diri benar sebelum mengirimnya!</p>
         </div>
+        @if ($errors->any())
+                <div id="alert-box" class="alert alert-danger alert-box">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
         <div class="pop-up">
             <div class="np"> <h1>Buat Akun</h1></div>
-                <form action="{{route('buat-akun.post')}}" method="POST" class="pop-up">
-                    @csrf
-                    <div class="input">
-                        <input type="text" class="input" name="nama_depan" placeholder="Nama depan" name="nama_depan">
-                        <input type="text" class="input" name="nama_belakang" placeholder="Nama belakang" name=
-                        "nama_belakang">
-                    </div>
-                    <div class="input">
-                        <input type="email" class="input" name="alamat_email" placeholder="Alamat email" required name="alamat_email">
-                    </div>
-                    <div class="input">
-                        <input type="password" class="input" name="password" placeholder="Password" required name="password">
-                    </div>
-                    <div class="input">
-                        <input type="password" class="input" placeholder="Ketik ulang Password" required>
-                    </div>
-                    <div class="input">
-                        <input type="text" class="input" name="id_admin" placeholder="ID Admin" required name="id_admin">
-                    </div>
-                    <div class="input">
-                        <input type="text" class="input" name="kode_aktivasi" placeholder="Kode Aktivasi" required name="kode_aktivasi">
-                    </div>
-                    <button type="submit" class="btn-popup"> Kirim </button>
-                </form>
-            <div class="login">
-                <p><a href="/login" class="ket">Login</a></p>
-            </div>
-        </div>
+            <form action="{{route('buat-akun.post')}}" method="POST" class="pop-up">
+                @csrf
+                <div class="input">
+                    <input type="text" class="input" name="nama_lengkap" placeholder="Nama lengkap" name="nama_lengkap">
+                </div>
+                <div class="input">
+                    <input type="email" class="input" name="alamat_email" placeholder="Alamat email" required name="alamat_email">
+                </div>
+                <div class="input">
+                    <input type="password" class="input" name="password" placeholder="Password" required>
+                </div>
+                <div class="input">
+                    <input type="password" class="input" name="password_confirmation" placeholder="Ketik ulang Password" required>
+                </div>
+                <div class="input">
+                    <input type="text" class="input" name="id_admin" placeholder="ID Admin" required name="id_admin">
+                </div>
+                <button type="submit" class="btn-popup"> Kirim </button>
+                <div class="login">
+                    <p><a href="/login" class="ket">Login</a></p>
+                </div>
+            </form>
+    </div>
     </div>
     <!-- buat akun end-->
-</body>
-</html>
+    </body>
+    </html>

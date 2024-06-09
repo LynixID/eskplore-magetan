@@ -109,6 +109,18 @@ body{
     text-align: right;
     cursor: pointer;
 }
+.alert-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    padding: 10px;
+    background-color: #c9d4c9;
+    color: rgba(1, 50, 32, 1);
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-bottom: 5%;
+}
 </style>
 </head>
 
@@ -136,9 +148,18 @@ body{
             <input type="password" class="input" placeholder="Password" name="password" required/>    
         </div>
         <div class="pw">
-            <p><a href="/ganti-password" class="ket">Lupa password</a></p>
+            <p><a href="/verifikasi" class="ket">Lupa password</a></p>
         </div>
-        <button type="submit" href="/beranda" class="btn-popup">Masuk</button>
+        @if ($errors->any())
+    <div class="alert alert-danger alert-box">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+        <button type="submit" class="btn-popup">Masuk</button>
         <div class="buat-akun">
             <p><a href="/buat" class="ket">Buat akun</a></p>
         </div>

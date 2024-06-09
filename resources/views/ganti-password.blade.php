@@ -120,7 +120,7 @@
         <h1>Ganti password?!</h1>
         <p>Pastikan password yang dituliskan telah benar</p>
     </div>
-    <div class="pop-up">
+    <form action="{{route('')}}" METHOD="POST" class="pop-up">
         <div class="np"><h1>Ubah Password</h1></div>
     <div class="isi">
         <div class="input">
@@ -134,6 +134,7 @@
     <div class="cancel">
         <p ><a href="/login" class="ket">Cancel</a></p> 
     </div>
+    </form>
     </div>
 </div>
     <!-- ganti password end-->

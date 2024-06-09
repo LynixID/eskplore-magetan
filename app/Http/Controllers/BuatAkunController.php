@@ -6,6 +6,9 @@ use App\Models\AkunAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class BuatAkunController extends Controller
 {
@@ -22,38 +25,65 @@ class BuatAkunController extends Controller
         return view('buat-akun');
     }
 
-    function loginPost(Request $request){
-        $request->validate([
-            'nama_depan' =>'required',
-            'id_admin' => 'required',
-            'password' => 'required'
-        ]);
-    
-        $credentials = $request->only('email', 'password');
-    if (Auth::attempt($credentials)) {
-    $request->session()->regenerate();
-    return redirect(route('beranda'));
-}
+    public function berandaadmin()
+    {
+        return view('berandaadmin');
     }
 
-function buatAkunPost(Request $request){
-    $request->validate([
-        'nama_depan' => 'required',
-        'nama_belakang' => 'required',
-        'alamat_email' => 'required|email',
-        'password' => 'required',
-        'id_admin' => 'required'
+    function loginPost(Request $request)
+{
+    $credentials = $request->validate([
+        'id_admin' => ['required'],
+        'nama_lengkap' => ['required'],
+        'password' => ['required'],
     ]);
 
-    $data['nama_depan'] = $request->nama_depan;
-    $data['nama_belakang'] = $request->nama_belakang;
-    $data['alamat_email'] = $request->alamat_email;
-    $data['password'] = Hash::make($request->password); 
-    $data['id_admin'] = $request->id_admin;
+    $akun_admin = AkunAdmin::where('id_admin', $request->id_admin)
+        ->where('nama_lengkap', $request->nama_lengkap)
+        ->first();
 
-    AkunAdmin::create($data);
+    if (!$akun_admin) {
+        return back()->withErrors([
+            'id_admin' => 'ID admin, nama lengkap atau kata laluan tidak sah.',
+        ]);
+    }
 
-    return redirect()->route('login')->with(['success' => 'Data Berhasil Disimpan!']);
+    if (!Hash::check($request->password, $akun_admin->password)) {
+        return back()->withErrors([
+            'password' => 'Kata laluan tidak sah.',
+        ]);
+    }
+
+    // Login successful, redirect to admin dashboard
+    return redirect()->route('berandaadmin');
 }
 
-};
+    function buatAkunPost(Request $request)
+{
+    $request->validate([
+        'nama_lengkap' => 'required',
+        'alamat_email' => 'required|email',
+        'password' => 'required|confirmed|min:6',
+        'password_confirmation' => 'required',
+        'id_admin' => 'required',
+    ]);
+
+    $allowedIds = ['233307101', '233307102', '233307112', '233307117'];
+
+    if (!in_array($request->id_admin, $allowedIds)) {
+        return back()->withErrors(['id_admin' => 'ID yang diinputkan salah.']);
+    }
+
+    if ($request->password != $request->password_confirmation) {
+        return back()->withErrors(['password' => 'Password dan konfirmasi password tidak sama.']);
+    }
+
+    $data['nama_lengkap'] = strtolower($request->nama_lengkap);
+    $data['alamat_email'] = $request->alamat_email;
+    $data['password'] = Hash::make($request->password);
+    $data['id_admin'] = $request->id_admin;
+
+    $akun_admin = AkunAdmin::create($data);
+    return redirect()->route('login');
+}
+}
