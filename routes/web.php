@@ -52,6 +52,9 @@ Route::post('/login',[BuatAkunController::class, 'loginPost'])->name('login.post
 Route::get('/buat-akun', [BuatAkunController::class, 'buatAkun']);
 Route::post('/buat-akun',[BuatAkunController::class, 'buatAkunPost'])->name('buat-akun.post');
 
+Route::get('/berandaadmin', function () {
+    return view('berandaadmin');
+});
 Route::get('/rektempat', function () {
     return view('rektempat');
 });
