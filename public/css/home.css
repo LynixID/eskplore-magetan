@@ -272,6 +272,17 @@ form input {
     padding-left: 11px;
 }
 
+.filter {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 30; /* Pastikan lebih tinggi dari elemen lain */
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+
 form label {
     font-size: 1.3rem;
     margin-right: 20px;

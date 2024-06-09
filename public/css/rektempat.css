@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
@@ -7,16 +7,20 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #a19f9f;
-}
+} */
 
 .search-container {
     position: relative;
-    margin-bottom: 400px;
-    margin-left: 850px;
+    margin-top: 50px;
+    margin-left: 900px;
     max-width: 400px;
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.input-search {
+    padding: 10px;
 }
 
 input[type="text"] {
@@ -32,7 +36,7 @@ input[type="text"] {
 .popup {
     display: none;
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 30px);
     left: 0;
     width: 420px; /* Lebar pop-up */
     height: 450px; /* Tinggi pop-up */
