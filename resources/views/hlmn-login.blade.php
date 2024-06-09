@@ -161,7 +161,7 @@ body{
 @endif
         <button type="submit" class="btn-popup">Masuk</button>
         <div class="buat-akun">
-            <p><a href="/buat" class="ket">Buat akun</a></p>
+            <p><a href="/buat-akun" class="ket">Buat akun</a></p>
         </div>
 </form>
     </div>

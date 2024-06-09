@@ -57,7 +57,7 @@
         <div class="w-full h-full text-sm font-light">
             <table>
                 <tr class=" bg-[#126b25] text-center text-white" id="judul-tabel">
-                    <td class="">NO</td>
+                    <td>NO</td>
                     <td>Nama</td>
                     <td>Jenis</td>
                     <td>Koordinat</td>
@@ -67,6 +67,7 @@
                     <td>Penjelasan</td>
                     <td>Detail Lokasi</td>
                     <td>Foto</td>
+                    <td>Aksi</td>
                 </tr>
                 @php
                     $no = 1;
@@ -89,7 +90,7 @@
                             <span class="short-text">{{ $shortPenjelasan }}</span>
                             @if (strlen($penjelasan) > 100)
                                 <span class="full-text" style="display: none;">{{ $penjelasan }}</span>
-                                <button class="toggle-btn  font-normal" onclick="toggleText(this)">
+                                <button class="toggle-btn font-normal" onclick="toggleText(this)">
                                     Selengkapnya...</button>
                             @endif
                         </td>
@@ -106,6 +107,13 @@
                             @endif
                         </td>
                         <td>{{ $item->foto }}</td>
+                        <td>
+                            <form action="{{ Route('hapus.wisata', $item->id) }}" method="post">
+                                @csrf
+                                <input type="submit" value="Hapus" id="btn-delete"
+                                    class="py-2 px-4 bg-red-500 text-white font-medium border-none cursor-pointer hover:bg-red-800 duration-[200ms]">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </table>
@@ -125,37 +133,34 @@
                 <div class="w-full text-center h-[100px] text-[2.7rem] flex items-center justify-center">Tambah Data
                     Lokasi</div>
                 <div class="w-full h-[calc(100%-48px)] flex justify-between">
-                    <form action="/lokasiwisata" method="POST" class="flex w-full h-full justify-between pb-16">
+                    <form action="/lokasiwisata" method="POST" class="flex w-full h-full justify-between pb-16"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
                             <div class="flex flex-col"><label for="nama">Nama Lokasi</label>
-                                <input type="text" id="nama" name="nama">
-                            </div>
-                            <div class="flex flex-col"><label for="jenis">Jenis Lokasi</label>
-                                <select name="jenis" id="jenis">
-                                    <option value="Wisata Alam">Wisata Alam</option>
-                                    <option value="Wisata Buatan">Wisata Buatan</option>
-                                </select>
+                                <input type="text" required id="nama" name="nama">
                             </div>
                             <div class="flex flex-col"><label for="koordinat">Koordinat Lokasi</label>
-                                <input type="text" id="koordinat" name="koordinat">
+                                <input type="text" required id="koordinat" name="koordinat">
                             </div>
                             <div class="flex flex-col"><label for="alamat">Alamat</label>
-                                <input type="text" id="alamat" name="alamat">
+                                <input type="text" required id="alamat" name="alamat">
                             </div>
                             <div class="flex flex-col"><label for="waktu">Jam Operasi</label>
-                                <input type="text" id="waktu" name="waktu">
+                                <input type="text" required id="waktu" name="waktu">
                             </div>
                         </div>
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
                             <div class="flex flex-col"><label for="website">Website</label>
-                                <input type="text" id="website" name="website">
+                                <input type="text" required id="website" name="website">
                             </div>
                             <div class="flex flex-col"><label for="penjelasan">Penjelasan Lokasi</label>
-                                <input type="text" id="penjelasan" name="penjelasan" class="w-full h-[80px]">
+                                <input type="text" required id="penjelasan" name="penjelasan"
+                                    class="w-full h-[80px]">
                             </div>
                             <div class="flex flex-col"><label for="detil">Detail Penjelasan</label>
-                                <input type="text" id="detil" name="detil" class="w-full h-[180px]">
+                                <input type="text" required id="detil" name="detil"
+                                    class="w-full h-[180px]">
                             </div>
                             <div>
                                 <label for="foto">Foto Lokasi</label>
