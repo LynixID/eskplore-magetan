@@ -3,7 +3,10 @@
     use App\Http\Controllers\ProfileController;
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\BuatAkunController;
-
+    use App\Http\Controllers\TitiklokasiController;
+    use App\Http\Controllers\WisataKulinerController;
+    use App\Http\Controllers\WisataPembelanjaanController;
+    
 Route::get('/', function () {
     return view('home');
 });
@@ -37,6 +40,10 @@ Route::get('/verifikasi', function () {
 
 Route::get('/buatAkun', function () {
     return view('buat-akun');
+});
+
+Route::get('/login', function () {
+    return view('hlmn-login');
 });
 
 Route::get('/berandaadmin', [BuatAkunController::class,'berandaadmin'])->name('beranda');

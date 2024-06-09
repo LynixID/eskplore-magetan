@@ -137,7 +137,7 @@ body{
         <div class="np"><h1>Login</h1></div><br>
         <div class="input">
             <i class='bx bxs-user'></i>
-            <input type="text" class="input" placeholder="Username" name="nama_depan">
+            <input type="text" class="input" placeholder="Username" name="nama_lengkap">
         </div>
         <div class="input">
             <i class='bx bxs-id-card'></i>
@@ -161,7 +161,7 @@ body{
 @endif
         <button type="submit" class="btn-popup">Masuk</button>
         <div class="buat-akun">
-            <p><a href="/buat-akun" class="ket">Buat akun</a></p>
+            <p><a href="/buatAkun" class="ket">Buat akun</a></p>
         </div>
 </form>
     </div>
