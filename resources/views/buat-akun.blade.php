@@ -118,15 +118,6 @@
             <h1>Hi admin baru</h1>
             <p>Pastikan data diri benar sebelum mengirimnya!</p>
         </div>
-        @if ($errors->any())
-                <div id="alert-box" class="alert alert-danger alert-box">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
         <div class="pop-up">
             <div class="np"> <h1>Buat Akun</h1></div>
             <form action="{{route('buat-akun.post')}}" method="POST" class="pop-up">
@@ -146,6 +137,15 @@
                 <div class="input">
                     <input type="text" class="input" name="id_admin" placeholder="ID Admin" required name="id_admin">
                 </div>
+                @if ($errors->any())
+                <div id="alert-box" class="alert alert-danger alert-box">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <button type="submit" class="btn-popup"> Kirim </button>
                 <div class="login">
                     <p><a href="/login" class="ket">Login</a></p>

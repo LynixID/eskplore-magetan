@@ -119,6 +119,18 @@
     text-align: right;
     cursor: pointer;
 }
+.alert-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 25%;
+    padding: 10px;
+    background-color: #c9d4c9;
+    color: rgba(1, 50, 32, 1);
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-bottom: 5%;
+}
 </style>
 </head>
 <body>
@@ -127,25 +139,41 @@
     <div class="info">
         <h1>Tunggu beberapa saat</h1>
         <p>Masukkan kode <br>untuk mengatur ulang password</p>
-</div>
+    </div>
     <div class="pop-up">
         <div class="np"><h1>Verifikasi Email</h1></div>
-        <form action="{{route('verifikasi.post')}}" method="POST" class="pop-up">
+        <form method="POST" action="{{ route('kirim.post') }}">
             @csrf
-        <div class="input">
-            <input type="email" class="input" placeholder="Alamat email">
-        </div>
-        <button class="btn-verif"><i class='bx bxs-send'></i></button>
-        <div class="input">
-            <input type="text" class="input" placeholder="Kode verifikasi">
-        </div>
+            <div class="input">
+                <input type="email" class="input" placeholder="Alamat email" name="alamat_email" value="{{ old('alamat_email') }}" required>
+            </div>
+            @if ($errors->has('alamat_email'))
+                <span class="error">{{ $errors->first('alamat_email') }}</span>
+            @endif
+            <button type="submit" class="btn-verif"><i class='bx bxs-send'></i></button>
+        </form>
+        
+        @if (session('success'))
+            <div class="alert alert-success alert-box">
+                {{ session('success') }}
+            </div>
+        @endif
+        
+        <form method="POST" action="{{ route('verifikasi.post') }}">
+            @csrf
+            <div class="input">
+                <input type="text" class="input" placeholder="Kode verifikasi" name="kode_verifikasi" required>
+                @if ($errors->has('kode_verifikasi'))
+                    <span class="error">{{ $errors->first('kode_verifikasi') }}</span>
+                @endif
+            </div>
+            <button type="submit" class="btn-popup">Konfirmasi</button>
+            <div class="cancel">
+                <p><a href="/login" class="ket">Cancel</a></p> 
+            </div>
+        </form>
     </div>
-    <button class="btn-popup">Konfirmasi</button>
-    <div class="cancel">
-        <p><a href="login" class="ket">Cancel</a></p> 
-    </div>
-</form>
 </div>
-    <!-- verif email end-->
+<!-- verif email end-->
 </body>
 </html>

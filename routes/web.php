@@ -6,6 +6,7 @@
     use App\Http\Controllers\TitiklokasiController;
     use App\Http\Controllers\WisataKulinerController;
     use App\Http\Controllers\WisataPembelanjaanController;
+    use App\Http\Controllers\FeedbackController;
     
 Route::get('/', function () {
     return view('home');
@@ -46,11 +47,18 @@ Route::get('/login', function () {
     return view('hlmn-login');
 });
 
-Route::get('/berandaadmin', [BuatAkunController::class,'berandaadmin'])->name('beranda');
+Route::get('/beranda', [BuatAkunController::class,'berandaadmin'])->name('beranda');
 Route::get('/login',[BuatAkunController::class, 'login'])->name('login');
 Route::post('/login',[BuatAkunController::class, 'loginPost'])->name('login.post');
-Route::get('/buat-akun', [BuatAkunController::class, 'buatAkun']);
+Route::get('/buat-akun', [BuatAkunController::class, 'buatAkun'])->name('buat-akun');
 Route::post('/buat-akun',[BuatAkunController::class, 'buatAkunPost'])->name('buat-akun.post');
+
+Route::post('/kirim-otp', [BuatAkunController::class, 'kirim'])->name('kirim');
+Route::post('/kirim-otp', [BuatAkunController::class, 'kirimOTP'])->name('kirim.post');
+Route::get('/verifikasi-otp', [BuatAkunController::class, 'verifikasi'])->name('verifikasi');
+Route::post('/verifikasi-otp', [BuatAkunController::class, 'verifikasiOTP'])->name('verifikasi.post');
+Route::get('/gantiPassword', [BuatAkunController::class,'gantiPassword'])->name('gantiPassword');
+Route::post('/gantiPassword', [BuatAkunController::class,'gantiPasswordPost'])->name('gantiPassword.post');
 
 Route::get('/berandaadmin', function () {
     return view('berandaadmin');
@@ -58,6 +66,10 @@ Route::get('/berandaadmin', function () {
 Route::get('/rektempat', function () {
     return view('rektempat');
 });
+
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback');
+Route::post('/proses_tambah)', [FeedbackController::class, 'proses_tambah'])->name('tambah.feedback');
+Route::delete('/proses_hapus/{id})', [FeedbackController::class, 'proses_hapus'])->name('hapus.feedback');
 
 Route::get('/lokasiwisata', [TitiklokasiController::class, 'outputLokasiWisata'])->name('lokasiwisata');
 Route::get('/lokasikuliner', [WisataKulinerController::class, 'outputLokasiKuliner'])->name('lokasikuliner');

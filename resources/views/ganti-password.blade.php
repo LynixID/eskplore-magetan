@@ -115,28 +115,34 @@
 </head>
 <body>
     <!-- ganti password start-->
-    <div class="bg">
-    <div class ="info">
+<div class="bg">
+    <div class="info">
         <h1>Ganti password?!</h1>
         <p>Pastikan password yang dituliskan telah benar</p>
     </div>
-    <form action="{{route('')}}" METHOD="POST" class="pop-up">
+    <form action="{{route('gantiPassword.post')}}" METHOD="POST" class="pop-up">
+        @csrf
         <div class="np"><h1>Ubah Password</h1></div>
-    <div class="isi">
-        <div class="input">
-            <input type="password" class="input" placeholder="Password baru">
+        <div class="isi">
+            <div class="input">
+                <input type="password" name="password" class="input" placeholder="Password baru">
+            </div>
+            <div class="input">
+                <input type="password" name="password_confirmation" class="input" placeholder="Ketik ulang password baru">
+            </div>
+            @if ($errors->has('password'))
+                <span class="error">{{ $errors->first('password') }}</span>
+            @endif
+            @if (session('success'))
+                <span class="success">{{ session('success') }}</span>
+            @endif
         </div>
-        <div class="input">
-            <input type="password" class="input" placeholder="Ketik ulang password baru">
+        <button class="btn-popup">Reset</button>
+        <div class="cancel">
+            <p ><a href="/login" class="ket">Cancel</a></p> 
         </div>
-    </div>
-    <button class="btn-popup">Reset</button>
-    <div class="cancel">
-        <p ><a href="/login" class="ket">Cancel</a></p> 
-    </div>
     </form>
-    </div>
 </div>
-    <!-- ganti password end-->
+<!-- ganti password end-->
 </body>
 </html>
