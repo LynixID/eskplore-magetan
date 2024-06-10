@@ -141,30 +141,16 @@
         <p>Masukkan kode <br>untuk mengatur ulang password</p>
     </div>
     <div class="pop-up">
-        <div class="np"><h1>Verifikasi Email</h1></div>
-        <form method="POST" action="{{ route('kirim.post') }}">
-            @csrf
-            <div class="input">
-                <input type="email" class="input" placeholder="Alamat email" name="alamat_email" value="{{ old('alamat_email') }}" required>
-            </div>
-            @if ($errors->has('alamat_email'))
-                <span class="error">{{ $errors->first('alamat_email') }}</span>
-            @endif
-            <button type="submit" class="btn-verif"><i class='bx bxs-send'></i></button>
-        </form>
-        
-        @if (session('success'))
-            <div class="alert alert-success alert-box">
-                {{ session('success') }}
-            </div>
-        @endif
-        
+        <div class="np"><h1>Verifikasi Kode</h1></div>
         <form method="POST" action="{{ route('verifikasi.post') }}">
             @csrf
             <div class="input">
+                <input type="text" class="input" placeholder="Captcha" name="captcha" value="{{ $captcha }}" readonly>
+            </div>
+            <div class="input">
                 <input type="text" class="input" placeholder="Kode verifikasi" name="kode_verifikasi" required>
                 @if ($errors->has('kode_verifikasi'))
-                    <span class="error">{{ $errors->first('kode_verifikasi') }}</span>
+                    <span class="error alert-box">{{ $errors->first('kode_verifikasi') }}</span>
                 @endif
             </div>
             <button type="submit" class="btn-popup">Konfirmasi</button>
@@ -173,7 +159,6 @@
             </div>
         </form>
     </div>
-</div>
 <!-- verif email end-->
 </body>
 </html>

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('nama_lengkap', 50);
             $table->string('alamat_email', 20);
             $table->string('password', 100);
-            $table->unsignedBigInteger('id_admin');            
+            $table->unsignedBigInteger('id_admin'); 
+            $table->string('captcha')->nullable();           
             $table->timestamps();
         });
     }

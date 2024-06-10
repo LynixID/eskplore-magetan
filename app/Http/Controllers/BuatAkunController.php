@@ -6,10 +6,7 @@ use App\Models\AkunAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Mail\OTPMail;
-
 
 class BuatAkunController extends Controller
 {
@@ -31,18 +28,7 @@ class BuatAkunController extends Controller
         return view('berandaadmin');
     }
 
-    public function kirim()
-    {
-        return view('verifikasi');
-    }
-    public function verifikasi()
-    {
-        return view('verifikasi');
-    }
-    public function gantiPassword()
-    {
-        return view('ganti-password');
-    }
+    
     function loginPost(Request $request)
     {
         $request->validate([
@@ -73,7 +59,7 @@ class BuatAkunController extends Controller
             'nama_lengkap' => 'required',
             'alamat_email' => 'required|email',
             'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required',
+            'password_confirmation' => 'required|same:password',
             'id_admin' => 'required',
         ]);
 
@@ -95,68 +81,56 @@ class BuatAkunController extends Controller
         $akun_admin = AkunAdmin::create($data);
         return redirect()->route('login');
     }
-
-    public function kirimOTP(Request $request)
+    
+    public function gantiPassword()
     {
-        $request->validate([
-            'alamat_email' => 'required|email',
-        ]);
-
-        $akun_admin = AkunAdmin::where('alamat_email', $request->alamat_email)->first();
-
-        if (!$akun_admin) {
-            return back()->withErrors(['alamat_email' => 'Alamat email tidak terdaftar.']);
-        }
-
-        $token = Str::random(60);
-        $akun_admin->otp_token = $token;
-        $akun_admin->otp_expires_at = now()->addMinutes(30);
-        $akun_admin->save();
-
-        Mail::to($request->alamat_email)->send(new OTPMail($token));
-
-        return redirect()->route('verifikasi');
+        return view('ganti-password');
     }
 
-    public function verifikasiOTP(Request $request)
+    public function verifikasi()
+{
+    $captcha = Str::random(6);
+    Session::put('captcha', $captcha);
+
+    return view('verifikasi', [
+        'captcha' => $captcha,
+    ]);
+}
+    public function verifikasiKode(Request $request)
     {
-        $request->validate([
-            'token' => 'required',
-        ]);
-
-        $akun_admin = AkunAdmin::where('alamat_email', $request->alamat_email)->first();
-
-        if (!$akun_admin) {
-            return back()->withErrors(['alamat_email' => 'Alamat email tidak terdaftar.']);
+        $captcha = Session::get('captcha');
+        if (!$captcha || $captcha != $request->input('captcha')) {
+            return back()->withErrors(['error' => 'Kode captcha salah.']);
         }
 
-        if (!$akun_admin->otp_token || $akun_admin->otp_token !== $request->token || $akun_admin->otp_expires_at < now()) {
-            return back()->withErrors(['token' => 'Token tidak valid atau telah kadaluarsa.']);
+        $kodeVerifikasi = $request->input('kode_verifikasi');
+        if (!$kodeVerifikasi) {
+            return back()->withErrors(['error' => 'Kode verifikasi tidak boleh kosong.']);
         }
 
-        $akun_admin->otp_token = null;
-        $akun_admin->otp_expires_at = null;
-        $akun_admin->save();
-
-        return redirect()->route('gantiPassword');
+        if ($kodeVerifikasi == 'kode_verifikasi_benar') {
+            return redirect()->route('gantiPassword');
+        } else {
+            return back()->withErrors(['error' => 'Kode verifikasi salah.']);
+        }
     }
-
+    
+    
     public function gantiPasswordPost(Request $request)
     {
         $request->validate([
+            'alamat_email' => 'required|email',
             'password' => 'required|confirmed|min:6',
-            'password_confirmation' => 'required',
+            'password_confirmation' => 'required|same:password',
         ]);
-
-        $akun_admin = AkunAdmin::where('alamat_email', $request->alamat_email)->first();
-
-        if (!$akun_admin) {
-            return back()->withErrors(['alamat_email' => 'Alamat email tidak terdaftar.']);
+    
+        $akun_admin = $request->input('nama_lengkap');
+        $akun_admin = AkunAdmin::where('nama_lengkap', $akun_admin)->first();
+    
+        if ($akun_admin) {
+            $akun_admin->update([
+                'password'=> Hash::make($request->alamat_email),
+            ]);
         }
-
-        $akun_admin->password = Hash::make($request->password);
-        $akun_admin->save();
-
         return redirect()->route('login');
-    }
-}
+    } }

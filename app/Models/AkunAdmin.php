@@ -11,5 +11,5 @@ class AkunAdmin extends Model
     protected $table = "akun_admins";
     protected $primaryKey = "id_admin";
     protected $fillable = [
-        'nama_lengkap', 'alamat_email', 'password', 'id_admin'];
+        'nama_lengkap', 'alamat_email', 'password', 'id_admin', 'captcha'];
 }
