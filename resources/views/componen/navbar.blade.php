@@ -9,7 +9,7 @@
             <li><a href="">Galeri</a></li>
             <li><a href="#peta">Peta</a></li>
             <li><a href="{{ url('/feedback') }}">Feedback</a></li>
-            <li><a href="{{ url('/login')}}">Admin</a></li>
+            <li><a href="{{ url('/login') }}">Admin</a></li>
         </ul>
     </div>
 </section>

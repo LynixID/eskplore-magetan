@@ -44,6 +44,6 @@ class FeedbackController extends Controller
             'pesan' => $request->pesan,
         ]);
 
-        return redirect('/')->with('succes', 'Feddback berhasil dikiri');
+        return redirect('/')->with('succes', 'Feddback berhasil dikirim');
     }
 }

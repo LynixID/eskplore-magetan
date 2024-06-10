@@ -26,22 +26,6 @@
 
     {{-- gradasi hitam start --}}
     <section class="sticky top-0 left-0 right-0 bottom-0 bg-[#00000088] z-10 duration-300" id="gradasi">
-
-        <!-- Pop up login start -->
-        {{-- <div class=" w-[350px] h-[500px] bg-[#D9D9D9] absolute top-[100px] right-[150px] z-50 duration-300 rounded-3xl flex flex-col justify-around items-center"
-            id="adminLogin">
-            <div
-                class="w-[100px] h-[100px] bg-[url('asset/iconProfil.png')] bg-cover bg-center absolute top-[-50px] right-[36%] ">
-            </div>
-            <h1 class="text-[1.7rem] mt-20">Login</h1>
-            <form action="" class="w-10/12 h-[60%] flex flex-col justify-center bg-slate-600 px-6 py-8">
-
-                <input type="text" class="my-2">
-                <input type="text" class="my-2">
-                <input type="text" class="my-2">
-            </form>
-        </div> --}}
-        <!-- pop up login ends -->
     </section>
     {{-- gradasi hitam ends --}}
 
@@ -76,8 +60,7 @@
             <div class="w-3/4 h-2/5 text-center pt-5">
                 <h1 class="text-6xl">Peta Wisata</h1>
                 <p class="text-2xl font-medium">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi,
-                    quasi.
+                    Tersaji lokasi-lokasi wisata paling worth it se Magetan.
                 </p>
             </div>
             <div class="w-3/4 h-2/5 flex justify-between">
@@ -85,14 +68,14 @@
                     <span
                         class="w-4/5 aspect-square rounded-3xl bg-[url('asset/iconfood.png')] bg-cover block m-auto"></span>
                     <p class="text-center text-[#013220] mt-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Terdapat lokasi-lokasi kuliner yang pastinya rekomended :D
                     </p>
                 </div>
                 <div class="w-2/5 h-full">
                     <span
                         class="w-4/5 aspect-square rounded-3xl bg-[url('asset/iconshop.png')] bg-cover block m-auto"></span>
                     <p class="text-center text-[#013220] mt-4">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Mau belanja? tenang, disini juga ada kok lokasinya ;)
                     </p>
                 </div>
             </div>
@@ -123,9 +106,8 @@
             <form class="w-5/12 h-3/4 bg-white relative rounded-2xl p-5" action="{{ route('tambah.feedback') }}"
                 method="POST">
                 @csrf
-                <div class="mb-5">
+                <div class="mb-5 flex flex-col">
                     <label for="name" class="text-2xl">Nama Anda :</label>
-                    <br>
                     <span class="flex justify-between">
                         <input type="text" class="border border-slate-800 rounded-md py-1 px-3" id="name"
                             placeholder="nama depan" name="nama_depan">
@@ -133,21 +115,24 @@
                             placeholder="nama belakang" name="nama_belakang">
                     </span>
                 </div>
-                <div class="mb-5">
+                <div class="mb-5 flex flex-col">
                     <label for="email" class="text-2xl">Email Anda :</label>
-                    <br>
                     <input type="email" placeholder="example@gmail.com" name="email"
                         class="border border-slate-800 rounded-md py-1 px-3 w-full" id="email">
                 </div>
-                <div class="mb-5">
+                <div class="mb-5 flex flex-col ">
                     <label for="komen" class="text-2xl">Masukan :</label>
-                    <br>
                     <input type="text" placeholder="kirim pesan pada kami" name="pesan"
                         class="border border-slate-800 rounded-md py-1 px-3 w-full h-[140px]" id="komen">
                 </div>
                 <div class="w-full flex justify-between">
-                    <button class="w-[35%] h-[40px] rounded-2xl text-white bg-red-500 hover:bg-red-700"
-                        type="reset">Reset</button>
+                    @if(@session('succes'))
+                    <div>
+                        {{ session('succes') }}
+                    </div>
+                    @endif
+                    {{-- <button class="w-[35%] h-[40px] rounded-2xl text-white bg-red-500 hover:bg-red-700"
+                        type="reset">Reset</button> --}}
                     <button class="w-[62%] h-[40px] rounded-2xl text-white  bg-green-700 hover:bg-green-900"
                         type="submit">Submit</button>
                 </div>
@@ -161,7 +146,21 @@
 
 
     {{-- Script Start --}}
-    <script src="js/script.js"></script>
+    <script>
+        // slide show background
+        const bgHero = document.querySelector("#beranda");
+        var countBg = 1;
+
+        function gantiBg() {
+            bgHero.style.backgroundImage =
+                'url("../asset/img.hero/bg-' + countBg + '.jpg")';
+            if (countBg == 5) {
+                countBg = 0;
+            }
+            countBg++;
+        }
+        setInterval(gantiBg, 5000);
+    </script>
     {{-- Script Ends --}}
 </body>
 
