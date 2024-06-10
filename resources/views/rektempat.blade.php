@@ -11,13 +11,7 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="index.html">Beranda</a>
-    </div>
-    <div class="header">
-        <div class="logo-container">
-            <h2>Peta Tempat Wisata Magetan</h2>
-        </div>
+   
 
         <div class="search-container">
             <input type="text" placeholder="cari lokasi wisata" id="searchInput">

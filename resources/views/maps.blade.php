@@ -23,6 +23,8 @@
     <!-- font end -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/home.css" />
+    
+    <link rel="stylesheet" href="css/rektempat.css">
     <style>
         body * {
             padding: 0;
@@ -52,21 +54,78 @@
     </section>
     {{-- navbar end --}}
 
+    <section class="absolute top-10 rigth-5 z-[9999] ">
+    <div class="search-container">
+            <input type="text" class="input-search" placeholder="cari lokasi wisata" id="searchInput">
+            <div class="popup">
+                <div class="popup-content">
+                    <span class="close-popup" onclick="closePopup()">&times;</span>
+                    <h3 class="recommendation-header">Recommendation</h3>
+                    <div class="gambar-info">
+                        <div class="gambar-info-item">
+                            <img src="asset/rekomendasi/telaga.jpg" alt="Telaga Sarangan">
+                            <p class="gambar-caption">Telaga Sarangan</p>
+                        </div>
+                        <div class="gambar-info-item">
+                            <img src="asset/rekomendasi/gunung lawu.jpg" alt="Gunung Lawu">
+                            <p class="gambar-caption">Gunung Lawu</p>
+                        </div>
+                        <div class="gambar-info-item">
+                            <img src="asset/rekomendasi/taman wisata genilangit.jpg" alt="Taman Wisata Genilangit">
+                            <p class="gambar-caption">Taman Wisata Genilangit</p>
+                        </div>
+                        <div class="gambar-info-item">
+                            <img src="asset/rekomendasi/Air trjun tirtosari.jpg" alt="Air Terjun Tirtosari">
+                            <p class="gambar-caption">Air Terjun Tirtosari</p>
+                        </div>
+                        <div class="gambar-caption">
+                            <h4>Top Search</h4>
+                            <p class="top-search-paragraph"><a href="#">Cemoro Sewu</a></p>
+                            <p class="top-search-paragraph"><a href="#">Mojosemi Forest Park</a></p>
+                            <p class="top-search-paragraph"><a href="#">Mbah Djoe Resort</a></p>
+                            <p class="top-search-paragraph"><a href="#">Kebun Refugia Magetan</a></p>
+                            <p class="top-search-paragraph"><a href="#">Telaga Sarangan</a></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-container">
+                <div class="kotak-baru">
+                    <h3>Filter</h3>
+                    <p>berdasar jenis</p>
+                    <p>berdasar wilayah</p>
+                </div>
+                <div class="kotak-kecil-container">
+                    <button class="kotak-kecil">+</button>
+                    <button class="kotak-kecil">-</button>
+                    <button class="kotak-kecil"><i class="fas fa-map-marker-alt"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- Maps Start --}}
     <div id="map"></div>
     {{-- Maps end --}}
 
     {{-- Popup Start --}}
     <section
-        class="w-1/4 h-[80dvh] absolute top-24 right-4 bg-[#F4FFF0] rounded-3xl z-[999] right-[-25%] shadow-2xl transition-all transition-[.3s] flex flex-col overflow-x-hidden overflow-y-auto "
+        class="w-1/4 h-[80dvh] absolute top-24 right-4 bg-[#F4FFF0] rounded-3xl z-[999] right-[-25%] shadow-2xl transition-all transition-[.x3s] flex flex-col overflow-x-hidden overflow-y-auto"
         id="deskripsi">
 
         <div class="w-full border-b-2 ">
             <img src="" alt="" id="img" width="100%" height="100%">
         </div>
-        <div class="w-full h-1/6 border-b-2 p-4">
+        <div class="w-full border-b-2 px-4 py-2">
             <h1 class="text-2xl font-semibold" id="judul1"></h1>
-            <h2 id="jenis"></h2>
+            <a href="" class="inline-block h-[35px] mt-2" id="maps" target="_blank">
+                <div class="flex item-center h-full">
+                    <img src="asset/icons8-turn-right-50.png" alt="" class="w-[25px] h-[25px] inline mr-2">
+                    <h3 class="inline-block h-[25px] hover:border-b-2 hover:border-black duration-[200ms]">
+                        Rute</h3>
+                </div>
+            </a>
         </div>
         <div class="w-full p-4 border-b-2 flex flex-col gap-3">
             <div class="flex gap-2 items-center">
@@ -118,13 +177,13 @@
 </body>
 <script>
     var judul1 = document.querySelector("#judul1");
-    var jenis = document.querySelector("#jenis");
     var alamat = document.querySelector("#alamat");
     var jam = document.querySelector("#jam");
     var website = document.querySelector("#website");
     var judul2 = document.querySelector("#judul2");
     var detil = document.querySelector("#detil");
     var img = document.querySelector("#img");
+    var urlMaps = document.querySelector("#maps");
 
     var popupDeskripsi = document.querySelector("#deskripsi");
     var map = L.map("map").setView([-7.662209, 111.354129], 12);
@@ -145,6 +204,11 @@
             .openOn(map);
     }
     map.on('click', onMapClick);
+
+    // Menangani klik pada peta untuk menyembunyikan popup deskripsi
+    map.on("click", function() {
+        popupDeskripsi.classList.add("right-[-25%]");
+    });
 
     // Menambahkan markers lokasi wisata ke peta
     var titikloaksis = {!! json_encode($titiklokasis) !!};
@@ -171,8 +235,8 @@
             console.log(id);
 
             judul1.innerText = titiklokasi.nama;
-            jenis.innerText = titiklokasi.jenis;
             alamat.innerText = titiklokasi.alamat;
+            urlMaps.setAttribute("href", titiklokasi.maps);
             jam.innerText = titiklokasi.waktu;
             website.innerText = titiklokasi.website;
             judul2.innerText = titiklokasi.nama;
@@ -180,6 +244,65 @@
             img.src = `asset/img.maps/${titiklokasi.foto}`;
         });
     }); // Ini adalah penutup untuk forEach
+
+    // coba buat wisata Pembelanjaan start
+    var wisata_pembelanjaans = {!! json_encode($wisata_pembelanjaans) !!};
+    wisata_pembelanjaans.forEach((wisata_pembelanjaan) => {
+        var koordinatString = wisata_pembelanjaan.koordinat;
+        var koordinatArray = koordinatString.split(",");
+        var latitude = parseFloat(koordinatArray[0]);
+        var longitude = parseFloat(koordinatArray[1]);
+
+        var nama = wisata_pembelanjaan.nama;
+        var penjelasan = wisata_pembelanjaan.penjelasan;
+        var id = wisata_pembelanjaan.id;
+
+        // menambahkan icon food
+        var greenIcon = L.icon({
+            iconUrl: "asset/pin_shop.png",
+
+            iconSize: [60, 80],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -86],
+        });
+
+        // menambahkan titik lokasi di maps
+        var marker = L.marker(
+                [latitude, longitude], {
+                    icon: greenIcon,
+                }, {
+                    id: id,
+                }
+            )
+            .addTo(map)
+            .bindPopup(`<b>${nama}</b><br>${penjelasan}`);
+
+        // menambahkan icon baru
+        var pinShop = L.icon({
+            iconUrl: "asset/loc_pin.png",
+
+            iconSize: [40, 40],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -86],
+        });
+
+        // Menambahkan event click pada marker
+        marker.on("click", function() {
+            popupDeskripsi.classList.remove("right-[-25%]");
+            map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
+            console.log(id);
+
+            judul1.innerText = wisata_pembelanjaan.nama;
+            alamat.innerText = wisata_pembelanjaan.alamat;
+            urlMaps.setAttribute("href", wisata_pembelanjaan.maps);
+            jam.innerText = wisata_pembelanjaan.waktu;
+            judul2.innerText = wisata_pembelanjaan.nama;
+            detil.innerText = wisata_pembelanjaan.detil;
+            img.src = `asset/img.maps/${wisata_pembelanjaan.foto}`;
+        });
+    });
+
+    // coba buat wisata Pembelanjaan end
 
     // coba buat wisata kuliner start
     var wisata_kuliners = {!! json_encode($wisata_kuliners) !!};
@@ -201,7 +324,6 @@
             iconAnchor: [22, 94],
             popupAnchor: [-3, -86],
         });
-
 
         // menambahkan titik lokasi di maps
         var marker = L.marker(
@@ -231,6 +353,7 @@
 
             judul1.innerText = wisata_kuliner.nama;
             alamat.innerText = wisata_kuliner.alamat;
+            urlMaps.setAttribute("href", wisata_kuliner.maps);
             jam.innerText = wisata_kuliner.waktu;
             judul2.innerText = wisata_kuliner.nama;
             detil.innerText = wisata_kuliner.detil;
@@ -239,62 +362,6 @@
     });
 
     // coba buat wisata kuliner end
-
-    // coba buat wisata pembelanjaan start
-    var wisata_pembelanjaans = {!! json_encode($wisata_pembelanjaans) !!};
-    wisata_pembelanjaans.forEach((wisata_pembelanjaan) => {
-        var koordinatString = wisata_pembelanjaan.koordinat;
-        var koordinatArray = koordinatString.split(",");
-        var latitude = parseFloat(koordinatArray[0]);
-        var longitude = parseFloat(koordinatArray[1]);
-
-        var nama = wisata_pembelanjaan.nama;
-        var penjelasan = wisata_pembelanjaan.penjelasan;
-        var id = wisata_pembelanjaan.id;
-
-        // menambahkan icon baru
-        var pinShop = L.icon({
-            iconUrl: "asset/pin_shop.png",
-
-            iconSize: [70, 80],
-            iconAnchor: [22, 94],
-            popupAnchor: [-3, -86],
-        });
-
-        // menambahkan titik lokasi di maps
-        var marker = L.marker(
-                [latitude, longitude], {
-                    icon: pinShop,
-                }, {
-                    id: id,
-                }
-            )
-            .addTo(map)
-            .bindPopup(`<b>${nama}</b><br>${penjelasan}`);
-
-
-
-        // Menambahkan event click pada marker
-        marker.on("click", function() {
-            popupDeskripsi.classList.remove("right-[-25%]");
-            map.flyTo([latitude, longitude], 13); // Pusatkan peta pada marker yang diklik
-            console.log(id);
-
-            judul1.innerText = wisata_pembelanjaan.nama;
-            alamat.innerText = wisata_pembelanjaan.alamat;
-            jam.innerText = wisata_pembelanjaan.waktu;
-            judul2.innerText = wisata_pembelanjaan.nama;
-            detil.innerText = wisata_pembelanjaan.detil;
-            img.src = `asset/img.maps/${wisata_pembelanjaan.foto}`;
-        });
-    });
-
-    // coba buat wisata pembelanjaan end
-
-    // Menangani klik pada peta untuk menyembunyikan popup deskripsi
-    map.on("click", function() {
-        popupDeskripsi.classList.add("right-[-25%]");
-    });
 </script>
 
 </html>

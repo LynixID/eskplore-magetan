@@ -25,21 +25,41 @@ body {
     margin-bottom: 5px;
 }
 
+.navbar .text {
+    margin: auto;
+    padding-left: 900px;
+    font-family: 'Poppins', sans-serif; /* ganti poppins */
+    font-size: 17px; /* ganti ukuran font */
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.navbar .text:hover {
+    color: aqua; /* warna berubah menjadi aqua saat dihover */
+}
+
 .container {
-    /*padding: 15px;*/
     box-shadow: 5px 5px 5px gray;
-    width: 1200px; /* lebar kontainer */
-    height: 520px; /* tinggi kontainer */
+    width: 1150px; /* lebar kontainer */
+    height: 510px; /* tinggi kontainer */
     background-color: #B9FFB7; /* warna kotak hijau */
-    border-radius:50px;
+    border-radius: 50px;
     display: flex;
     justify-content: space-around; /* mengatur jarak antara kotak kecil secara merata */
     align-items: center; 
-    margin-left: 150px;
-    margin-right: 150px;
-    margin-bottom:90px;
+    margin-left: 95px;
+    margin-right: 95px;
+    margin-bottom: 90px;
     margin-top: 90px;
     padding: auto;
+}
+
+.container-link {
+    text-decoration: none; /* menghilangkan garis bawah tautan */
+    color: inherit; /* mewarisi warna teks */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .text {
@@ -52,11 +72,10 @@ body {
     width: 200px; /* lebar kotak kecil */
     height: 200px; /* tinggi kotak kecil */
     background: linear-gradient(to right, #1AA06F, #62E760); /* gradasi warna */
-    /*margin: 3px; /* jarak antara kotak kecil */
     box-shadow: 5px 5px 5px gray;
     margin-left: 10px;
     margin-right: 10px;
-    border-radius:20px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;

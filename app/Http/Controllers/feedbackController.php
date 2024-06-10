@@ -9,7 +9,8 @@ use Illuminate\Routing\Route;
 
 class FeedbackController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $feedback = Feedback::get();
         //dd(Feedback::all());
         return view('feedback', compact('feedback'));
@@ -27,8 +28,8 @@ class FeedbackController extends Controller
         return redirect()->route('feedback')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
-    public function proses_tambah(Request $request): RedirectResponse {
-        // dd($request->all());
+    public function proses_tambah(Request $request): RedirectResponse
+    {
         $request->validate([
             'nama_depan' => 'required',
             'nama_belakang' => 'required',
@@ -36,7 +37,7 @@ class FeedbackController extends Controller
             'pesan' => 'required',
         ]);
 
-        $nama = $request->nama_depan . ' ' . $request->nama_belakang; 
+        $nama = $request->nama_depan . ' ' . $request->nama_belakang;
         Feedback::create([
             'name' => $nama,
             'email' => $request->email,
@@ -46,5 +47,3 @@ class FeedbackController extends Controller
         return redirect('/')->with('succes', 'Feddback berhasil dikirim');
     }
 }
-
-

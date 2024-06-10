@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="css/home.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>Manage Lokasi Wisata</title>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
         <div class="w-full h-full text-sm font-light">
             <table>
                 <tr class=" bg-[#126b25] text-center text-white" id="judul-tabel">
-                    <td class="">NO</td>
+                    <td>NO</td>
                     <td>Nama</td>
                     <td>Jenis</td>
                     <td>Koordinat</td>
@@ -67,6 +67,7 @@
                     <td>Penjelasan</td>
                     <td>Detail Lokasi</td>
                     <td>Foto</td>
+                    <td>Aksi</td>
                 </tr>
                 @php
                     $no = 1;
@@ -89,7 +90,7 @@
                             <span class="short-text">{{ $shortPenjelasan }}</span>
                             @if (strlen($penjelasan) > 100)
                                 <span class="full-text" style="display: none;">{{ $penjelasan }}</span>
-                                <button class="toggle-btn  font-normal" onclick="toggleText(this)">
+                                <button class="toggle-btn font-normal" onclick="toggleText(this)">
                                     Selengkapnya...</button>
                             @endif
                         </td>
@@ -106,6 +107,13 @@
                             @endif
                         </td>
                         <td>{{ $item->foto }}</td>
+                        <td>
+                            <form action="{{ Route('hapus.wisata', $item->id) }}" method="post">
+                                @csrf
+                                <input type="submit" value="Hapus" id="btn-delete"
+                                    class="py-2 px-4 bg-red-500 text-white font-medium border-none cursor-pointer hover:bg-red-800 duration-[200ms]">
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </table>
@@ -115,55 +123,55 @@
     {{-- Content End --}}
 
     {{-- Pop up Input Start --}}
-    <section class="w-full h-[100dvh] bg-[rgba(0,0,0,0.7)] fixed left-0 top-0 flex items-end justify-center pb-8 hidden"
+    <section
+        class="w-full h-[100dvh] bg-[rgba(0,0,0,0.7)] absolute left-0 top-0 flex items-center justify-center pt-8 hidden "
         id="popup">
         <span
             class="block p-3 rounded-full hover:scale-110 border bg-white absolute right-8 top-20 cursor-pointer font-bold text-black transition-all"
             id="x">X</span>
-        <div class="w-[85%] h-[85dvh]  bg-[#f6fffc] flex justify-between " id="popupNonBg">
+        <div class="w-[85%] h-[75dvh] rounded-xl bg-[#f6fffc] flex justify-between " id="popupNonBg">
             <div class="w-full h-full">
                 <div class="w-full text-center h-[100px] text-[2.7rem] flex items-center justify-center">Tambah Data
                     Lokasi</div>
                 <div class="w-full h-[calc(100%-48px)] flex justify-between">
-                    <form action="/lokasiwisata" method="POST" class="flex w-full h-full justify-between pb-16">
+                    <form action="/lokasiwisata" method="POST" class="flex w-full h-full justify-between pb-16"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
                             <div class="flex flex-col"><label for="nama">Nama Lokasi</label>
-                                <input type="text" id="nama" name="nama">
-                            </div>
-                            <div class="flex flex-col"><label for="jenis">Jenis Lokasi</label>
-                                <select name="jenis" id="jenis">
-                                    <option value="Wisata Alam">Wisata Alam</option>
-                                    <option value="Wisata Buatan">Wisata Buatan</option>
-                                </select>
+                                <input type="text" required id="nama" name="nama">
                             </div>
                             <div class="flex flex-col"><label for="koordinat">Koordinat Lokasi</label>
-                                <input type="text" id="koordinat" name="koordinat">
+                                <input type="text" required id="koordinat" name="koordinat">
                             </div>
                             <div class="flex flex-col"><label for="alamat">Alamat</label>
-                                <input type="text" id="alamat" name="alamat">
+                                <input type="text" required id="alamat" name="alamat">
+                            </div>
+                            <div class="flex flex-col"><label for="maps">Url Maps</label>
+                                <input type="text" required id="maps" name="maps">
                             </div>
                             <div class="flex flex-col"><label for="waktu">Jam Operasi</label>
-                                <input type="text" id="waktu" name="waktu">
+                                <input type="text" required id="waktu" name="waktu">
                             </div>
                         </div>
                         <div class="w-[48%] h-full px-5 py-2 flex flex-col justify-around">
-                            <div class="flex flex-col"><label for="website">Website</label>
-                                <input type="text" id="website" name="website">
-                            </div>
-                            <div class="flex flex-col"><label for="penjelasan">Penjelasan Lokasi</label>
-                                <input type="text" id="penjelasan" name="penjelasan" class="w-full h-[80px]">
+                            <div class="flex flex-col">
+                                <label for="penjelasan">Penjelasan Lokasi</label>
+                                <textarea required id="penjelasan" name="penjelasan" class="w-full h-[80px] p-[12px]"></textarea>
                             </div>
                             <div class="flex flex-col"><label for="detil">Detail Penjelasan</label>
-                                <input type="text" id="detil" name="detil" class="w-full h-[180px]">
+                                <textarea required id="detil" name="detil" class="w-full h-[180px] p-[12px]"></textarea>
                             </div>
-                            <div>
+                            <div class="flex flex-col">
                                 <label for="foto">Foto Lokasi</label>
-                                <input type="file" name="foto">
+                                <div>
+                                    <input type="file" name="foto">
+                                    <button type="submit"
+                                        class="w-[200px] py-2 bg-[#21b304] text-white ml-6 font-medium rounded-xl text-center mx-auto">Kirim
+                                        Data</button>
+                                </div>
                             </div>
-                            <button type="submit"
-                                class="w-[130px] py-2 bg-[#21b304] text-white font-medium rounded-xl text-center mx-auto">Kirim
-                                Data</button>
+
                         </div>
                     </form>
                 </div>
