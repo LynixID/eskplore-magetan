@@ -146,8 +146,13 @@
                         class="border border-slate-800 rounded-md py-1 px-3 w-full h-[140px]" id="komen">
                 </div>
                 <div class="w-full flex justify-between">
-                    <button class="w-[35%] h-[40px] rounded-2xl text-white bg-red-500 hover:bg-red-700"
-                        type="reset">Reset</button>
+                    @if(@session('succes'))
+                    <div>
+                        {{ session('succes') }}
+                    </div>
+                    @endif
+                    {{-- <button class="w-[35%] h-[40px] rounded-2xl text-white bg-red-500 hover:bg-red-700"
+                        type="reset">Reset</button> --}}
                     <button class="w-[62%] h-[40px] rounded-2xl text-white  bg-green-700 hover:bg-green-900"
                         type="submit">Submit</button>
                 </div>
