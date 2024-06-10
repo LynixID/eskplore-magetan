@@ -58,15 +58,21 @@
 
     {{-- Popup Start --}}
     <section
-        class="w-1/4 h-[80dvh] absolute top-24 right-4 bg-[#F4FFF0] rounded-3xl z-[999] right-[-25%] shadow-2xl transition-all transition-[.3s] flex flex-col overflow-x-hidden overflow-y-auto "
+        class="w-1/4 h-[80dvh] absolute top-24 right-4 bg-[#F4FFF0] rounded-3xl z-[999] right-[-25%] shadow-2xl transition-all transition-[.x3s] flex flex-col overflow-x-hidden overflow-y-auto"
         id="deskripsi">
 
         <div class="w-full border-b-2 ">
             <img src="" alt="" id="img" width="100%" height="100%">
         </div>
-        <div class="w-full h-1/6 border-b-2 p-4">
+        <div class="w-full border-b-2 px-4 py-2">
             <h1 class="text-2xl font-semibold" id="judul1"></h1>
-            <h2 id="jenis"></h2>
+            <a href="" class="inline-block h-[35px] mt-2" id="maps" target="_blank">
+                <div class="flex item-center h-full">
+                    <img src="asset/icons8-turn-right-50.png" alt="" class="w-[25px] h-[25px] inline mr-2">
+                    <h3 class="inline-block h-[25px] hover:border-b-2 hover:border-black duration-[200ms]">
+                        Rute</h3>
+                </div>
+            </a>
         </div>
         <div class="w-full p-4 border-b-2 flex flex-col gap-3">
             <div class="flex gap-2 items-center">
@@ -118,13 +124,13 @@
 </body>
 <script>
     var judul1 = document.querySelector("#judul1");
-    var jenis = document.querySelector("#jenis");
     var alamat = document.querySelector("#alamat");
     var jam = document.querySelector("#jam");
     var website = document.querySelector("#website");
     var judul2 = document.querySelector("#judul2");
     var detil = document.querySelector("#detil");
     var img = document.querySelector("#img");
+    var urlMaps = document.querySelector("#maps");
 
     var popupDeskripsi = document.querySelector("#deskripsi");
     var map = L.map("map").setView([-7.662209, 111.354129], 12);
@@ -176,8 +182,8 @@
             console.log(id);
 
             judul1.innerText = titiklokasi.nama;
-            jenis.innerText = titiklokasi.jenis;
             alamat.innerText = titiklokasi.alamat;
+            urlMaps.setAttribute("href", titiklokasi.maps);
             jam.innerText = titiklokasi.waktu;
             website.innerText = titiklokasi.website;
             judul2.innerText = titiklokasi.nama;
@@ -235,6 +241,7 @@
 
             judul1.innerText = wisata_pembelanjaan.nama;
             alamat.innerText = wisata_pembelanjaan.alamat;
+            urlMaps.setAttribute("href", wisata_pembelanjaan.maps);
             jam.innerText = wisata_pembelanjaan.waktu;
             judul2.innerText = wisata_pembelanjaan.nama;
             detil.innerText = wisata_pembelanjaan.detil;
@@ -293,6 +300,7 @@
 
             judul1.innerText = wisata_kuliner.nama;
             alamat.innerText = wisata_kuliner.alamat;
+            urlMaps.setAttribute("href", wisata_kuliner.maps);
             jam.innerText = wisata_kuliner.waktu;
             judul2.innerText = wisata_kuliner.nama;
             detil.innerText = wisata_kuliner.detil;

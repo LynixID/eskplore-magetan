@@ -52,7 +52,7 @@ body {
 }
 
 .menu ul li a:hover {
-    color: aqua;
+    color: rgb(147, 255, 89);
 }
 
 /* ======================navbar end========================= */
@@ -60,10 +60,12 @@ body {
 #beranda {
     width: 100%;
     height: 100dvh;
+    overflow-x: hidden;
+    background-image: url("../asset/img.hero/bg-5.jpg");
+    transition: all 0.5s;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-image: url("../asset/img.hero/landscape-lake-surrounded-by-hills-covered-greenery-blue-sky-daytime.jpg");
     background-position: center;
     background-size: cover;
     position: relative;
@@ -263,7 +265,7 @@ table #judul-tabel * {
 form input,
 form select,
 form textarea {
-    border: 2px solid rgb(16, 103, 16);
+    border: 2px solid rgba(16, 103, 16, 0.496);
     border-radius: 10px;
     width: 100%;
 }
