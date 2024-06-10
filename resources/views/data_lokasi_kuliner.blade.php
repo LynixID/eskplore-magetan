@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="css/home.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>Manage Lokasi Kuliner</title>
 </head>
 
 <body>
