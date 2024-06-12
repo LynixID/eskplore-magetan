@@ -46,7 +46,8 @@ class BuatAkunController extends Controller
 
         if ($akun_admin && Hash::check($password, $akun_admin->password)) {
             $request->session()->put('authenticatedUser', $akun_admin);
-            return redirect()->route('beranda');
+        
+            return redirect()->route('beranda')->with('success', 'Selamat datang kembali');
         }
 
         return redirect(route('login'))->withInput()->withErrors(['error' => 'Data yang dimasukkan salah']);
@@ -59,13 +60,13 @@ class BuatAkunController extends Controller
             'alamat_email' => 'required|email',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'required|same:password',
-            'id_admin' => 'required',
+            'id_admin' => 'required|unique:akun_admins',
         ]);
 
         $allowedIds = ['233307101', '233307102', '233307112', '233307117'];
 
         if (!in_array($request->id_admin, $allowedIds)) {
-            return back()->withErrors(['error' => 'ID yang diinputkan salah.']);
+            return back()->withErrors(['error' => 'ID yang dimasukkan salah.']);
         }
 
         if ($request->password != $request->password_confirmation) {
@@ -78,7 +79,7 @@ class BuatAkunController extends Controller
         $data['id_admin'] = $request->id_admin;
 
         $akun_admin = AkunAdmin::create($data);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success, Akun berhasil dibuat');
     }
     
     public function gantiPassword()
@@ -102,7 +103,7 @@ class BuatAkunController extends Controller
                 'password'=> Hash::make($request->password),
             ]);
         }
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success, Password berhasil diubah');
     } }
 
     

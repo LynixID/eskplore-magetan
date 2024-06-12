@@ -11,6 +11,13 @@
         <img src="{{ asset('asset/img.beranda/Logo.png') }}" alt="Logo" class="logo">
         <a href="#" class="text right-link">Logout</a>
     </div>
+        @if (session('success'))
+    <div id="alert-box-success" class="alert-box success-box">
+        <h3>Proses login berhasil</h3>
+        <hr class="custom-line"> 
+        {{ session('success') }}
+    </div>
+@endif
     <div class="container">
         <a href="feedback" class="container-link">
             <div class="small-box">

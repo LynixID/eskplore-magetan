@@ -10,7 +10,7 @@
     width: 800px;
     height: 555px;
     display: flex;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 20%;
     border-radius: 5px;
     background-color: rgba(1, 50, 32, 1);
@@ -32,7 +32,6 @@
     padding: 3%;
 }
 .info{
-    margin-left: 5%;
     margin-top: 20%;
     font-family: "Poppins", sans-serif;
     color: #c7d5c7;
@@ -97,23 +96,50 @@
     text-align: right;
     cursor: pointer;
 }
+.kembali{
+    color: #c9d4c9;
+    font-family: "Poppins", sans-serif;
+    margin-left:3%;
+    margin-top:4%;
+    font-size: small;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
 .alert-box {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 25%;
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 20%;
     padding: 10px;
-    background-color: #c9d4c9;
+    background-color: #fff;
     color: rgba(1, 50, 32, 1);
     border-radius: 5px;
-    margin-left: 20%;
-    margin-bottom: 5%;
+    animation: fadeOut 5s forwards; 
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; } 
+    100% { opacity: 0; } 
 }
 </style>
 </head>
 <body>
     <!-- buat akun start-->
     <div class="bg">
+        @if ($errors->any())
+        <div class="alert alert-danger alert-box">
+                @foreach ($errors->all() as $error)
+                <h3>Proses login gagal</h3>
+                <hr class="custom-line"> 
+                    {{ $error }}
+                @endforeach
+        </div>
+        @endif
+        <div class="kembali">
+            <p><a href="/" class="kembali">Kembali</a></p>
+        </div>
         <div class="info">
             <h1>Hi admin baru</h1>
             <p>Pastikan data diri benar sebelum mengirimnya!</p>
@@ -137,15 +163,6 @@
                 <div class="input">
                     <input type="text" class="input" name="id_admin" placeholder="ID Admin" required name="id_admin">
                 </div>
-                @if ($errors->any())
-                <div id="alert-box" class="alert alert-danger alert-box">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
                 <button type="submit" class="btn-popup"> Kirim </button>
                 <div class="login">
                     <p><a href="/login" class="ket">Login</a></p>

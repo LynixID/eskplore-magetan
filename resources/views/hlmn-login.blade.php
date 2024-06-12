@@ -13,7 +13,7 @@ body{
     width: 800px;
     height: 555px;
     display: flex;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-left: 20%;
     border-radius: 5px;
     background-color: rgba(1, 50, 32, 1);
@@ -36,7 +36,6 @@ body{
     padding: 3%;
 }
 .info{
-    margin-left: 5%;
     margin-top: 20%;
     font-family: "Poppins", sans-serif;
     color: #c7d5c7;
@@ -109,24 +108,59 @@ body{
     text-align: right;
     cursor: pointer;
 }
+.kembali{
+    color: #c9d4c9;
+    font-family: "Poppins", sans-serif;
+    margin-left:3%;
+    margin-top:4%;
+    font-size: small;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
 .alert-box {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 15%;
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 20%;
     padding: 10px;
-    background-color: #c9d4c9;
+    background-color: #fff;
     color: rgba(1, 50, 32, 1);
     border-radius: 5px;
-    margin-left: 20%;
-    margin-bottom: 5%;
+    animation: fadeOut 5s forwards; 
 }
+
+@keyframes fadeOut {
+    0% { opacity: 1; } 
+    100% { opacity: 0; } 
+}
+
 </style>
 </head>
 
 <body>
     <!-- login start-->
     <div class ="bg">
+        @if ($errors->any())
+    <div class="alert alert-danger alert-box">
+            @foreach ($errors->all() as $error)
+            <h3>Proses login gagal</h3>
+            <hr class="custom-line"> 
+                {{ $error }}
+            @endforeach
+    </div>
+        @endif
+        @if (session('success'))
+    <div id="alert-box-success" class="alert-box success-box">
+        <h3>Akun berhasil dibuat</h3>
+        <hr class="custom-line"> 
+        {{ session('success') }}
+    </div>
+@endif
+<div class="kembali">
+    <p><a href="/" class="kembali">Kembali</a></p>
+</div>
     <div class="info">
         <h1>Selamat datang<br> kembali!</h1>
         <p>Halaman ini digunakan untuk login admin<br>bagi pengunjung biasa mohon tidak mengisinya</p>
@@ -150,7 +184,7 @@ body{
         <div class="pw">
             <p><a href="/ganti-password" class="ket">Lupa password</a></p>
         </div>
-        @if ($errors->any())
+        {{-- @if ($errors->any())
     <div class="alert alert-danger alert-box">
         <ul>
             @foreach ($errors->all() as $error)
@@ -158,7 +192,7 @@ body{
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
         <button type="submit" class="btn-popup">Masuk</button>
         <div class="buat-akun">
             <p><a href="/buatAkun" class="ket">Buat akun</a></p>
