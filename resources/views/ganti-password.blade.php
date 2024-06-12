@@ -69,7 +69,7 @@
     font-family: "Poppins", sans-serif;
     font-size: larger;
     align-items: center;
-    padding: 10px 100px 10px 100px;
+    padding: 10px 120px 10px 90px;
     width: 70px;
     display: flex;
     border-radius: 10px;
@@ -111,13 +111,25 @@
     text-align: right;
     cursor: pointer;
 }
+.alert-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+    padding: 10px;
+    background-color: #c9d4c9;
+    color: rgba(1, 50, 32, 1);
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-bottom: 5%;
+}
 </style>
 </head>
 <body>
     <!-- ganti password start-->
 <div class="bg">
     <div class="info">
-        <h1>Ganti password?!</h1>
+        <h1>Ganti password</h1>
         <p>Pastikan password yang dituliskan telah benar</p>
     </div>
     <form action="{{route('gantiPassword.post')}}" METHOD="POST" class="pop-up">
@@ -125,18 +137,23 @@
         <div class="np"><h1>Ubah Password</h1></div>
         <div class="isi">
             <div class="input">
+                <input type="email" name="alamat_email" class="input" placeholder="Email">
+            </div>
+            <div class="input">
                 <input type="password" name="password" class="input" placeholder="Password baru">
             </div>
             <div class="input">
                 <input type="password" name="password_confirmation" class="input" placeholder="Ketik ulang password baru">
             </div>
-            @if ($errors->has('password'))
-                <span class="error">{{ $errors->first('password') }}</span>
+            @if ($errors->any())
+                <div class="alert alert-danger alert-box">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
-            @if (session('success'))
-                <span class="success">{{ session('success') }}</span>
-            @endif
-        </div>
         <button class="btn-popup">Reset</button>
         <div class="cancel">
             <p ><a href="/login" class="ket">Cancel</a></p> 

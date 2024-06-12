@@ -148,7 +148,7 @@ body{
             <input type="password" class="input" placeholder="Password" name="password" required/>    
         </div>
         <div class="pw">
-            <p><a href="/verifikasi" class="ket">Lupa password</a></p>
+            <p><a href="/ganti-password" class="ket">Lupa password</a></p>
         </div>
         @if ($errors->any())
     <div class="alert alert-danger alert-box">

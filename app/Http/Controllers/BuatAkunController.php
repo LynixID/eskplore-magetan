@@ -28,7 +28,6 @@ class BuatAkunController extends Controller
         return view('berandaadmin');
     }
 
-    
     function loginPost(Request $request)
     {
         $request->validate([
@@ -86,35 +85,6 @@ class BuatAkunController extends Controller
     {
         return view('ganti-password');
     }
-
-    public function verifikasi()
-{
-    $captcha = Str::random(6);
-    Session::put('captcha', $captcha);
-
-    return view('verifikasi', [
-        'captcha' => $captcha,
-    ]);
-}
-    public function verifikasiKode(Request $request)
-    {
-        $captcha = Session::get('captcha');
-        if (!$captcha || $captcha != $request->input('captcha')) {
-            return back()->withErrors(['error' => 'Kode captcha salah.']);
-        }
-
-        $kodeVerifikasi = $request->input('kode_verifikasi');
-        if (!$kodeVerifikasi) {
-            return back()->withErrors(['error' => 'Kode verifikasi tidak boleh kosong.']);
-        }
-
-        if ($kodeVerifikasi == 'kode_verifikasi_benar') {
-            return redirect()->route('gantiPassword');
-        } else {
-            return back()->withErrors(['error' => 'Kode verifikasi salah.']);
-        }
-    }
-    
     
     public function gantiPasswordPost(Request $request)
     {
@@ -124,13 +94,44 @@ class BuatAkunController extends Controller
             'password_confirmation' => 'required|same:password',
         ]);
     
-        $akun_admin = $request->input('nama_lengkap');
-        $akun_admin = AkunAdmin::where('nama_lengkap', $akun_admin)->first();
+        $akun_admin = $request->input('alamat_email');
+        $akun_admin = AkunAdmin::where('alamat_email', $akun_admin)->first();
     
         if ($akun_admin) {
             $akun_admin->update([
-                'password'=> Hash::make($request->alamat_email),
+                'password'=> Hash::make($request->password),
             ]);
         }
         return redirect()->route('login');
     } }
+
+    
+//     public function verifikasi()
+// {
+//     $captcha = Str::random(6);
+//     Session::put('captcha', $captcha);
+
+//     return view('verifikasi', [
+//         'captcha' => $captcha,
+//     ]);
+// }
+
+// public function verifikasiKode(Request $request)
+// {
+//     $captcha = Session::get('captcha');
+//     if (!$captcha || $captcha != $request->input('captcha')) {
+//         return back()->withErrors(['error' => 'Kode captcha salah.']);
+//     }
+
+//     $kodeVerifikasi = $request->input('kode_verifikasi');
+//     if (!$kodeVerifikasi) {
+//         return back()->withErrors(['error' => 'Kode verifikasi tidak boleh kosong.']);
+//     }
+
+//     if ($kodeVerifikasi == 'kode_verifikasi_benar') {
+//         Session::put('kode_verifikasi_benar', true); 
+//         return redirect()->route('gantiPassword');
+//     } else {
+//         return back()->withErrors(['error' => 'Kode verifikasi salah.']);
+//     }
+// }

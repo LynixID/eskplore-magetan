@@ -53,13 +53,14 @@ Route::post('/login',[BuatAkunController::class, 'loginPost'])->name('login.post
 Route::get('/buat-akun', [BuatAkunController::class, 'buatAkun'])->name('buat-akun');
 Route::post('/buat-akun',[BuatAkunController::class, 'buatAkunPost'])->name('buat-akun.post');
 
-Route::get('/verifikasi', [BuatAkunController::class, 'verifikasi'])->name('verifikasi');
-Route::post('/verifikasi', [BuatAkunController::class, 'verifikasiKode'])->name('verifikasi.post');
+// Route::get('/verifikasi', [BuatAkunController::class, 'verifikasi'])->name('verifikasi');
+// Route::post('/verifikasi', [BuatAkunController::class, 'verifikasiKode'])->name('verifikasi.post');
 Route::get('/ganti-password', [BuatAkunController::class,'gantiPassword'])->name('gantiPassword');
 Route::post('/ganti-password', [BuatAkunController::class, 'gantiPasswordPost'])->name('gantiPassword.post');
 Route::get('/berandaadmin', function () {
     return view('berandaadmin');
 });
+
 Route::get('/rektempat', function () {
     return view('rektempat');
 });

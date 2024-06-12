@@ -142,17 +142,23 @@
     </div>
     <div class="pop-up">
         <div class="np"><h1>Verifikasi Kode</h1></div>
-        <form method="POST" action="{{ route('verifikasi.post') }}">
+        <form method="POST" action="{{route('verifikasi.post') }}">
             @csrf
             <div class="input">
                 <input type="text" class="input" placeholder="Captcha" name="captcha" value="{{ $captcha }}" readonly>
             </div>
             <div class="input">
                 <input type="text" class="input" placeholder="Kode verifikasi" name="kode_verifikasi" required>
-                @if ($errors->has('kode_verifikasi'))
-                    <span class="error alert-box">{{ $errors->first('kode_verifikasi') }}</span>
-                @endif
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger alert-box">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <button type="submit" class="btn-popup">Konfirmasi</button>
             <div class="cancel">
                 <p><a href="/login" class="ket">Cancel</a></p> 
